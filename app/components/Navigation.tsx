@@ -2,41 +2,113 @@ import Link from 'next/link';
 
 export default function Navigation() {
   return (
-    <nav className="bg-white shadow-md">
+    <nav style={{ background: '#ffffff', borderBottom: '2px solid #e8e4dc', boxShadow: '0 2px 16px rgba(74,33,17,0.07)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center" style={{ height: '72px' }}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="text-2xl font-bold text-green-700">
-              Abhishag
+          <Link href="/" className="flex items-center gap-3 group py-2">
+            <div
+              className="transition-transform duration-300 group-hover:scale-105"
+              style={{ height: '60px', width: '60px', flexShrink: 0 }}
+            >
+              <img
+                src="/logo.jpeg"
+                alt="Abhishag Logo"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }}
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+              <span
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: '1.5rem',
+                  fontWeight: 700,
+                  color: '#4A2111',
+                  lineHeight: 1,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                Abhishag
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: '0.6rem',
+                  fontWeight: 600,
+                  color: '#5A9E22',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  marginTop: '2px',
+                }}
+              >
+                Home Health Services
+              </span>
             </div>
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex gap-8">
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-green-700 transition-colors font-medium"
-            >
-              Home
-            </Link>
-            <Link
+          <div className="hidden md:flex gap-8 items-center">
+            {[
+              { href: '/', label: 'Home' },
+              { href: '/services', label: 'Services' },
+              { href: '/about', label: 'About Us' },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  color: '#4a4a6a',
+                  letterSpacing: '0.03em',
+                  textDecoration: 'none',
+                  padding: '6px 0',
+                  borderBottom: '2px solid transparent',
+                  transition: 'color 0.2s, border-color 0.2s',
+                }}
+                onMouseEnter={e => {
+                  (e.target as HTMLElement).style.color = '#4A2111';
+                  (e.target as HTMLElement).style.borderBottomColor = '#5A9E22';
+                }}
+                onMouseLeave={e => {
+                  (e.target as HTMLElement).style.color = '#4a4a6a';
+                  (e.target as HTMLElement).style.borderBottomColor = 'transparent';
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+            <a
               href="/services"
-              className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+              style={{
+                fontFamily: "'Lato', sans-serif",
+                fontWeight: 700,
+                fontSize: '0.88rem',
+                color: '#ffffff',
+                background: '#5A9E22',
+                letterSpacing: '0.04em',
+                textDecoration: 'none',
+                padding: '8px 20px',
+                borderRadius: '8px',
+                transition: 'background 0.2s, transform 0.2s',
+              }}
+              onMouseEnter={e => {
+                (e.target as HTMLElement).style.background = '#4A2111';
+                (e.target as HTMLElement).style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={e => {
+                (e.target as HTMLElement).style.background = '#5A9E22';
+                (e.target as HTMLElement).style.transform = 'scale(1)';
+              }}
             >
-              Services
-            </Link>
-            <Link
-              href="/about"
-              className="text-gray-700 hover:text-green-700 transition-colors font-medium"
-            >
-              About Us
-            </Link>
+              Contact Us
+            </a>
           </div>
 
-          {/* Mobile menu button (placeholder for future enhancement) */}
+          {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="text-gray-700 hover:text-green-700">
+            <button style={{ color: '#4A2111' }}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>

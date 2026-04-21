@@ -48,30 +48,17 @@ const SCENES = [
   },
 ];
 
-const SCENE_DURATION = 4000; // ms each scene
-const TRANSITION_DURATION = 1200; // ms crossfade
+const SCENE_DURATION = 4500;
+const TRANSITION_DURATION = 1400;
 
 export default function CinematicHero() {
   const [current, setCurrent] = useState(0);
   const [next, setNext] = useState<number | null>(null);
   const [captionVisible, setCaptionVisible] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const startTimeRef = useRef<number>(Date.now());
 
   const startCycle = (from: number) => {
-    if (progressRef.current) clearInterval(progressRef.current);
     if (timerRef.current) clearTimeout(timerRef.current);
-
-    setProgress(0);
-    startTimeRef.current = Date.now();
-
-    progressRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTimeRef.current;
-      setProgress(Math.min((elapsed / SCENE_DURATION) * 100, 100));
-    }, 50);
 
     timerRef.current = setTimeout(() => {
       const nextIdx = (from + 1) % SCENES.length;
@@ -88,34 +75,21 @@ export default function CinematicHero() {
   };
 
   useEffect(() => {
-    if (!paused) {
-      startCycle(current);
-    }
+    startCycle(current);
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
-      if (progressRef.current) clearInterval(progressRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused]);
-
-  const goToScene = (idx: number) => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (progressRef.current) clearInterval(progressRef.current);
-    setCaptionVisible(false);
-    setNext(idx);
-    setTimeout(() => {
-      setCurrent(idx);
-      setNext(null);
-      setCaptionVisible(true);
-      startCycle(idx);
-    }, TRANSITION_DURATION);
-  };
+  }, []);
 
   return (
-    <section className="relative w-full overflow-hidden" style={{ height: '92vh', minHeight: '600px' }}>
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ height: '92vh', minHeight: '600px' }}
+    >
       {/* Cinematic letterbox bars */}
-      <div className="absolute top-0 left-0 right-0 z-20 bg-black" style={{ height: '3.5%' }} />
-      <div className="absolute bottom-0 left-0 right-0 z-20 bg-black" style={{ height: '3.5%' }} />
+      <div className="absolute top-0 left-0 right-0 z-20 bg-black" style={{ height: '3%' }} />
+      <div className="absolute bottom-0 left-0 right-0 z-20 bg-black" style={{ height: '3%' }} />
 
       {/* Scene layers */}
       {SCENES.map((scene, idx) => {
@@ -127,22 +101,27 @@ export default function CinematicHero() {
             key={idx}
             className="absolute inset-0"
             style={{
-              opacity: isNext ? 1 : isCurrent ? 1 : 0,
               zIndex: isNext ? 2 : 1,
-              transition: isNext ? `opacity ${TRANSITION_DURATION}ms ease-in-out` : undefined,
+              opacity: isNext ? 1 : 1,
+              transition: isNext
+                ? `opacity ${TRANSITION_DURATION}ms ease-in-out`
+                : undefined,
             }}
           >
-            {/* Ken Burns animated wrapper */}
             <div
-              className={`w-full h-full ken-burns-${scene.kenBurns}`}
-              style={{ animationDuration: `${SCENE_DURATION + TRANSITION_DURATION}ms` }}
+              className={`ken-burns-${scene.kenBurns}`}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                animationDuration: `${SCENE_DURATION + TRANSITION_DURATION}ms`,
+              }}
             >
               <Image
                 src={scene.src}
                 alt={scene.title}
                 fill
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-                priority={idx === 0}
+                style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                priority={idx === 0 || idx === 1}
                 sizes="100vw"
               />
             </div>
@@ -150,151 +129,136 @@ export default function CinematicHero() {
         );
       })}
 
-      {/* Cinematic gradient overlays */}
+      {/* Multi-layer cinematic gradient overlays */}
       <div
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 30%, transparent 55%, rgba(0,0,0,0.75) 100%)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 28%, transparent 52%, rgba(0,0,0,0.8) 100%)',
         }}
       />
-      {/* Left dark vignette */}
       <div
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at 20% 50%, transparent 40%, rgba(0,0,0,0.4) 100%)',
+            'radial-gradient(ellipse at 15% 50%, transparent 35%, rgba(0,0,0,0.35) 100%)',
         }}
       />
 
       {/* Caption */}
       <div
-        className="absolute z-30 left-0 right-0 px-8 sm:px-16 lg:px-24"
+        className="absolute z-30 left-0 right-0 px-8 sm:px-16 lg:px-28"
         style={{
-          bottom: '12%',
-          transition: `opacity ${TRANSITION_DURATION * 0.6}ms ease-in-out, transform ${TRANSITION_DURATION * 0.6}ms ease-in-out`,
+          bottom: '10%',
+          transition: `opacity ${TRANSITION_DURATION * 0.55}ms ease-in-out, transform ${TRANSITION_DURATION * 0.55}ms ease-in-out`,
           opacity: captionVisible ? 1 : 0,
-          transform: captionVisible ? 'translateY(0)' : 'translateY(16px)',
+          transform: captionVisible ? 'translateY(0)' : 'translateY(18px)',
         }}
       >
-        {/* Scene label pill */}
-        <div className="inline-flex items-center gap-2 mb-4">
-          <span
-            className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full"
-            style={{ background: 'rgba(4,120,87,0.85)', color: '#fff', letterSpacing: '0.15em' }}
-          >
-            Scene {current + 1} of {SCENES.length}
-          </span>
-        </div>
         <h2
-          className="font-bold text-white mb-2"
           style={{
-            fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
-            textShadow: '0 2px 24px rgba(0,0,0,0.6)',
-            lineHeight: 1.15,
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(1.9rem, 4.2vw, 3.4rem)',
+            fontWeight: 700,
+            color: '#ffffff',
+            textShadow: '0 2px 28px rgba(0,0,0,0.65)',
+            lineHeight: 1.12,
+            marginBottom: '0.5rem',
+            letterSpacing: '-0.01em',
           }}
         >
           {SCENES[current].title}
         </h2>
         <p
-          className="text-white/80 font-light"
           style={{
-            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-            textShadow: '0 1px 10px rgba(0,0,0,0.5)',
+            fontFamily: "'Lato', sans-serif",
+            fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+            color: 'rgba(255,255,255,0.82)',
+            fontWeight: 300,
+            textShadow: '0 1px 12px rgba(0,0,0,0.5)',
+            letterSpacing: '0.01em',
           }}
         >
           {SCENES[current].subtitle}
         </p>
       </div>
 
-      {/* Progress bar */}
-      <div className="absolute z-30 left-8 right-8 sm:left-16 sm:right-16" style={{ bottom: '9%' }}>
-        <div className="w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-green-400 rounded-full"
-            style={{
-              width: `${progress}%`,
-              transition: 'width 0.05s linear',
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Scene dots + pause button */}
-      <div className="absolute z-30 flex items-center gap-4" style={{ bottom: '5.5%', left: '50%', transform: 'translateX(-50%)' }}>
+      {/* Scene dots (minimal, no labels/progress/pause) */}
+      <div
+        className="absolute z-30 flex items-center gap-3"
+        style={{
+          bottom: '5%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
         {SCENES.map((_, idx) => (
-          <button
+          <div
             key={idx}
-            onClick={() => goToScene(idx)}
-            aria-label={`Go to scene ${idx + 1}`}
             style={{
-              width: idx === current ? '28px' : '8px',
-              height: '8px',
+              width: idx === current ? '32px' : '8px',
+              height: '4px',
               borderRadius: '9999px',
-              background: idx === current ? '#4ade80' : 'rgba(255,255,255,0.4)',
-              transition: 'all 0.4s ease',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
+              background:
+                idx === current
+                  ? '#6AAF2C'
+                  : 'rgba(255,255,255,0.35)',
+              transition: 'all 0.5s ease',
             }}
           />
         ))}
-        <button
-          onClick={() => setPaused(p => !p)}
-          aria-label={paused ? 'Play' : 'Pause'}
-          className="ml-3 flex items-center justify-center rounded-full border border-white/40 bg-black/30 hover:bg-black/50 transition-colors"
-          style={{ width: '32px', height: '32px' }}
-        >
-          {paused ? (
-            <svg width="13" height="14" viewBox="0 0 13 14" fill="white">
-              <polygon points="2,1 12,7 2,13" />
-            </svg>
-          ) : (
-            <svg width="12" height="13" viewBox="0 0 12 13" fill="white">
-              <rect x="1" y="1" width="3.5" height="11" rx="1" />
-              <rect x="7.5" y="1" width="3.5" height="11" rx="1" />
-            </svg>
-          )}
-        </button>
       </div>
 
-      {/* Top-left branding */}
-      <div className="absolute top-8 left-8 sm:left-16 z-30">
+      {/* Top-left branding with user logo */}
+      <div className="absolute top-6 left-6 sm:left-12 z-30 flex items-center gap-3">
         <div
-          className="text-white font-light tracking-widest uppercase text-xs"
-          style={{ letterSpacing: '0.25em', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
+          style={{
+            width: '52px',
+            height: '52px',
+            background: 'rgba(255,255,255,0.18)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '14px',
+            border: '1px solid rgba(255,255,255,0.28)',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
-          Abhishag Home Health Services
+          <img
+            src="/logo.jpeg"
+            alt="Abhishag"
+            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }}
+          />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: '1.25rem',
+              fontWeight: 700,
+              color: '#ffffff',
+              textShadow: '0 1px 10px rgba(0,0,0,0.5)',
+              lineHeight: 1,
+            }}
+          >
+            Abhishag
+          </span>
+          <span
+            style={{
+              fontFamily: "'Lato', sans-serif",
+              fontSize: '0.6rem',
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.65)',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              marginTop: '3px',
+            }}
+          >
+            Home Health Services
+          </span>
         </div>
       </div>
-
-      {/* CSS for Ken Burns */}
-      <style>{`
-        @keyframes kenBurnsZoomInRight {
-          0%   { transform: scale(1.08) translate(-1%, 0%); }
-          100% { transform: scale(1.18) translate(1%, -0.5%); }
-        }
-        @keyframes kenBurnsZoomInLeft {
-          0%   { transform: scale(1.08) translate(1%, 0%); }
-          100% { transform: scale(1.18) translate(-1%, 0.5%); }
-        }
-        @keyframes kenBurnsZoomInTop {
-          0%   { transform: scale(1.08) translate(0%, 1%); }
-          100% { transform: scale(1.18) translate(0%, -0.5%); }
-        }
-        .ken-burns-zoom-in-right {
-          animation: kenBurnsZoomInRight ease-in-out forwards;
-          will-change: transform;
-        }
-        .ken-burns-zoom-in-left {
-          animation: kenBurnsZoomInLeft ease-in-out forwards;
-          will-change: transform;
-        }
-        .ken-burns-zoom-in-top {
-          animation: kenBurnsZoomInTop ease-in-out forwards;
-          will-change: transform;
-        }
-      `}</style>
     </section>
   );
 }
