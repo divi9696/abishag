@@ -4,17 +4,29 @@ import Link from 'next/link';
 
 export default function Navigation() {
   return (
-    <nav style={{ background: '#ffffff', borderBottom: '2px solid #DDD5CC', boxShadow: '0 2px 18px rgba(61,26,10,0.08)' }}>
+    <nav
+      style={{
+        background: '#ffffff',
+        borderBottom: '1.5px solid #DDD5CC',
+        boxShadow: '0 2px 14px rgba(61,26,10,0.08)',
+        /* ── Fix 2: sticky so nav stays visible on scroll ── */
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center" style={{ height: '74px' }}>
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group py-2">
+        {/* ── Fix 2: reduced height from 74px → 58px ── */}
+        <div className="flex justify-between items-center" style={{ height: '58px' }}>
+          {/* Logo — using new logo.png */}
+          <Link href="/" className="flex items-center gap-2 group py-1">
             <div
               className="transition-transform duration-300 group-hover:scale-105"
-              style={{ height: '60px', width: '60px', flexShrink: 0 }}
+              style={{ height: '46px', width: '46px', flexShrink: 0 }}
             >
+              {/* ── Fix 3: updated to logo.png ── */}
               <img
-                src="/logo.jpeg"
+                src="/logo.png"
                 alt="Abishag Logo"
                 style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }}
               />
@@ -23,7 +35,7 @@ export default function Navigation() {
               <span
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '1.55rem',
+                  fontSize: '1.4rem',
                   fontWeight: 700,
                   color: '#3D1A0A',
                   lineHeight: 1,
@@ -35,7 +47,7 @@ export default function Navigation() {
               <span
                 style={{
                   fontFamily: "'Nunito', sans-serif",
-                  fontSize: '0.58rem',
+                  fontSize: '0.54rem',
                   fontWeight: 700,
                   color: '#6AB04C',
                   letterSpacing: '0.2em',
@@ -61,11 +73,11 @@ export default function Navigation() {
                 style={{
                   fontFamily: "'Nunito', sans-serif",
                   fontWeight: 600,
-                  fontSize: '0.95rem',
+                  fontSize: '0.93rem',
                   color: '#5C3D2A',
                   letterSpacing: '0.02em',
                   textDecoration: 'none',
-                  padding: '6px 0',
+                  padding: '5px 0',
                   borderBottom: '2px solid transparent',
                   transition: 'color 0.2s, border-color 0.2s',
                 }}
@@ -86,12 +98,12 @@ export default function Navigation() {
               style={{
                 fontFamily: "'Nunito', sans-serif",
                 fontWeight: 800,
-                fontSize: '0.87rem',
+                fontSize: '0.85rem',
                 color: '#ffffff',
                 background: '#6AB04C',
                 letterSpacing: '0.04em',
                 textDecoration: 'none',
-                padding: '9px 22px',
+                padding: '8px 20px',
                 borderRadius: '8px',
                 transition: 'background 0.2s, transform 0.2s',
               }}

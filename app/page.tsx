@@ -1,15 +1,30 @@
 'use client';
 
+import { useEffect, useState, useRef } from 'react';
 import CinematicHero from './components/CinematicHero';
-import { useEffect, useState } from 'react';
 
 export default function Home() {
+  // ── Intro animation state ──
+  const [introFinished, setIntroFinished] = useState(false);
+  const [introDismissed, setIntroDismissed] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setIsVisible(true), 150);
     return () => clearTimeout(t);
   }, []);
+
+  // Dismiss intro when video ends or user clicks
+  const dismissIntro = () => {
+    setIntroDismissed(true);
+  };
+
+  const handleVideoEnd = () => {
+    setIntroFinished(true);
+    setTimeout(() => setIntroDismissed(true), 600); // slight delay before fade-out completes
+  };
 
   const features = [
     {
@@ -31,6 +46,57 @@ export default function Home() {
 
   return (
     <div style={{ background: '#F4F1ED' }}>
+
+      {/* ── INTRO ANIMATION OVERLAY ── */}
+      {!introDismissed && (
+        <div
+          onClick={dismissIntro}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            background: '#000',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            opacity: introFinished ? 0 : 1,
+            transition: 'opacity 0.6s ease',
+          }}
+        >
+          <video
+            ref={videoRef}
+            src="/intro-animation.mp4"
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleVideoEnd}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+          {/* Skip hint */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '32px',
+              right: '40px',
+              fontFamily: "'Nunito', sans-serif",
+              fontSize: '0.82rem',
+              color: 'rgba(255,255,255,0.55)',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              pointerEvents: 'none',
+              userSelect: 'none',
+            }}
+          >
+            Tap anywhere to skip
+          </div>
+        </div>
+      )}
+
       {/* ── CINEMATIC HERO ── */}
       <CinematicHero />
 
@@ -240,7 +306,6 @@ export default function Home() {
           overflow: 'hidden',
         }}
       >
-        {/* Decorative blobs */}
         <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.09 }}>
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl animate-pulse" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />

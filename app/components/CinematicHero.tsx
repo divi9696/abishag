@@ -97,8 +97,8 @@ export default function CinematicHero() {
     <section
       className="relative w-full overflow-hidden"
       style={{
-        /* Fill everything below the 74px nav bar */
-        height: 'calc(100vh - 74px)',
+        /* Fill everything below the 58px sticky nav */
+        height: 'calc(100vh - 58px)',
         minHeight: '500px',
         maxHeight: '860px',
       }}
@@ -225,47 +225,7 @@ export default function CinematicHero() {
         ))}
       </div>
 
-      {/* ── Top-left branding ── */}
-      <div className="absolute top-5 left-5 sm:left-10 z-30 flex items-center gap-3">
-        <div
-          style={{
-            width: '50px', height: '50px',
-            background: 'rgba(255,255,255,0.14)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '13px',
-            border: '1px solid rgba(255,255,255,0.22)',
-            overflow: 'hidden', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-          }}
-        >
-          <img
-            src="/logo.jpeg"
-            alt="Abishag"
-            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }}
-          />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '1.3rem', fontWeight: 700, color: '#ffffff',
-              textShadow: '0 1px 10px rgba(0,0,0,0.55)', lineHeight: 1,
-            }}
-          >
-            Abishag
-          </span>
-          <span
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontSize: '0.56rem', fontWeight: 700,
-              color: 'rgba(255,255,255,0.72)',
-              letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '3px',
-            }}
-          >
-            Home Health Services
-          </span>
-        </div>
-      </div>
+
     </section>
   );
 }
