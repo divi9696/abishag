@@ -8,7 +8,7 @@ const blogPosts = [
     category: 'Caregiver Tips',
     title: 'Understanding the 5 Stages of Dementia: A Family Guide',
     excerpt:
-      'Navigating dementia care can feel overwhelming. This guide walks you through each stage, what to expect, and how Abishag's specialists can help your family stay prepared and compassionate throughout the journey.',
+      'Navigating dementia care can feel overwhelming. This guide walks you through each stage, what to expect, and how Abishag\'s specialists can help your family stay prepared and compassionate throughout the journey.',
     date: 'April 18, 2026',
     readTime: '6 min read',
     author: 'Dr. Meena Krishnamurthy',
@@ -21,7 +21,7 @@ const blogPosts = [
     category: 'Home Health',
     title: 'Why Home-Based ICU Care Is Changing Elder Healthcare',
     excerpt:
-      'For critically ill patients, hospital stays can be disruptive and stressful. Learn how Abishag's Home ICU setup delivers hospital-grade critical care in the comfort of the patient's own home—without compromising quality.',
+      'For critically ill patients, hospital stays can be disruptive and stressful. Learn how Abishag\'s Home ICU setup delivers hospital-grade critical care in the comfort of the patient\'s own home—without compromising quality.',
     date: 'April 14, 2026',
     readTime: '5 min read',
     author: 'Rajan Pillai',

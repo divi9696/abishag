@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import ChatAssistant from "./components/ChatAssistant";
 
 export const metadata: Metadata = {
   title: "Abhishag - Home Health Services",
@@ -30,6 +31,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ChatAssistant />
       </body>
     </html>
   );

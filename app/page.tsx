@@ -7,8 +7,32 @@ import IntroAnimation from './components/IntroAnimation';
 export default function Home() {
   // ── Intro animation state ──
   const [introDone, setIntroDone] = useState(false);
-
   const [isVisible, setIsVisible] = useState(false);
+
+  // ── Review state ──
+  type Review = { name: string; rating: number; text: string; date: string };
+  const [reviews, setReviews] = useState<Review[]>([
+    { name: 'Priya Ramachandran', rating: 5, text: 'Abishag transformed my mother\'s daily life. The caregiver assigned was patient, professional, and treated her like family. We are truly grateful.', date: 'April 2026' },
+    { name: 'Karthik Sundaram', rating: 5, text: 'The nursing team is exceptional. Their attention to detail with medication management gave our entire family peace of mind. Highly recommended.', date: 'March 2026' },
+  ]);
+  const [formName, setFormName] = useState('');
+  const [formRating, setFormRating] = useState(0);
+  const [formText, setFormText] = useState('');
+  const [hoveredStar, setHoveredStar] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleReviewSubmit = () => {
+    if (!formName.trim() || formRating === 0 || !formText.trim()) return;
+    const today = new Date();
+    const dateStr = today.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+    setReviews((prev) => [{ name: formName.trim(), rating: formRating, text: formText.trim(), date: dateStr }, ...prev]);
+    setFormName('');
+    setFormRating(0);
+    setFormText('');
+    setHoveredStar(0);
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+  };
 
   useEffect(() => {
     const t = setTimeout(() => setIsVisible(true), 150);
@@ -17,17 +41,14 @@ export default function Home() {
 
   const features = [
     {
-      emoji: '👨‍⚕️',
       title: 'Professional Care',
       desc: 'Our trained and experienced staff provide the highest quality care and attention to every individual.',
     },
     {
-      emoji: '🏠',
       title: 'Safe Environment',
       desc: 'A secure and comfortable facility designed specifically for the needs of our elderly residents.',
     },
     {
-      emoji: '🌟',
       title: 'Holistic Wellness',
       desc: 'We focus on physical health, mental wellbeing, and social engagement for a better quality of life.',
     },
@@ -372,7 +393,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map(({ emoji, title, desc }) => (
+            {features.map(({ title, desc }) => (
               <div
                 key={title}
                 style={{
@@ -395,7 +416,7 @@ export default function Home() {
                   el.style.boxShadow = '0 4px 28px rgba(61,26,10,0.07)';
                 }}
               >
-                <div style={{ fontSize: '3rem', marginBottom: '18px' }}>{emoji}</div>
+
                 <h3
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
@@ -419,6 +440,150 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── REVIEWS SECTION ── */}
+      <section style={{ background: '#ffffff', padding: '88px 0' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <div className="text-center" style={{ marginBottom: '60px' }}>
+            <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#6AB04C', marginBottom: '12px' }}>
+              What Families Say
+            </p>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>
+              Reviews &amp; Testimonials
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            {/* ── Write a review ── */}
+            <div style={{ background: '#F9F7F4', borderRadius: '22px', padding: '40px 36px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF' }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>
+                Share Your Experience
+              </h3>
+              <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.88rem', color: '#8C7B6E', marginBottom: '28px', lineHeight: 1.6 }}>
+                Your feedback helps us serve families better.
+              </p>
+
+              {/* Name */}
+              <label style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.82rem', color: '#5C3D2A', display: 'block', marginBottom: '6px' }}>Your Name</label>
+              <input
+                type="text"
+                placeholder="e.g. Priya Sundaram"
+                value={formName}
+                onChange={(e) => setFormName(e.target.value)}
+                style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.92rem', width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid #DDD5CC', outline: 'none', background: '#ffffff', color: '#3D1A0A', marginBottom: '20px', boxSizing: 'border-box', transition: 'border-color 0.2s' }}
+                onFocus={(e) => (e.target.style.borderColor = '#6AB04C')}
+                onBlur={(e) => (e.target.style.borderColor = '#DDD5CC')}
+              />
+
+              {/* Stars */}
+              <label style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.82rem', color: '#5C3D2A', display: 'block', marginBottom: '10px' }}>Your Rating</label>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    onClick={() => setFormRating(star)}
+                    onMouseEnter={() => setHoveredStar(star)}
+                    onMouseLeave={() => setHoveredStar(0)}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', transition: 'transform 0.15s' }}
+                    onMouseDown={(e) => ((e.currentTarget as HTMLElement).style.transform = 'scale(0.9)')}
+                    onMouseUp={(e) => ((e.currentTarget as HTMLElement).style.transform = 'scale(1)')}
+                    aria-label={`Rate ${star} star`}
+                  >
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill={star <= (hoveredStar || formRating) ? '#F4A720' : '#DDD5CC'} style={{ transition: 'fill 0.15s' }}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  </button>
+                ))}
+                {formRating > 0 && (
+                  <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.82rem', color: '#8C7B6E', alignSelf: 'center', marginLeft: '4px' }}>
+                    {['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'][formRating]}
+                  </span>
+                )}
+              </div>
+
+              {/* Review text */}
+              <label style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.82rem', color: '#5C3D2A', display: 'block', marginBottom: '6px' }}>Your Review</label>
+              <textarea
+                placeholder="Tell us about your experience with Abishag..."
+                value={formText}
+                onChange={(e) => setFormText(e.target.value)}
+                rows={4}
+                style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.92rem', width: '100%', padding: '12px 16px', borderRadius: '10px', border: '1.5px solid #DDD5CC', outline: 'none', background: '#ffffff', color: '#3D1A0A', resize: 'vertical', marginBottom: '24px', boxSizing: 'border-box', transition: 'border-color 0.2s' }}
+                onFocus={(e) => (e.target.style.borderColor = '#6AB04C')}
+                onBlur={(e) => (e.target.style.borderColor = '#DDD5CC')}
+              />
+
+              {/* Submit */}
+              <button
+                onClick={handleReviewSubmit}
+                disabled={!formName.trim() || formRating === 0 || !formText.trim()}
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 800,
+                  fontSize: '0.93rem',
+                  color: '#ffffff',
+                  background: (!formName.trim() || formRating === 0 || !formText.trim()) ? '#C5B9B0' : '#6AB04C',
+                  padding: '13px 36px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  cursor: (!formName.trim() || formRating === 0 || !formText.trim()) ? 'not-allowed' : 'pointer',
+                  transition: 'background 0.25s, transform 0.2s',
+                  letterSpacing: '0.04em',
+                  width: '100%',
+                  boxShadow: (!formName.trim() || formRating === 0 || !formText.trim()) ? 'none' : '0 4px 18px rgba(106,176,76,0.35)',
+                }}
+                onMouseEnter={(e) => { if (formName.trim() && formRating > 0 && formText.trim()) (e.currentTarget as HTMLElement).style.background = '#3D7A28'; }}
+                onMouseLeave={(e) => { if (formName.trim() && formRating > 0 && formText.trim()) (e.currentTarget as HTMLElement).style.background = '#6AB04C'; }}
+              >
+                {submitted ? 'Review Submitted!' : 'Submit Review'}
+              </button>
+              {submitted && (
+                <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.82rem', color: '#6AB04C', marginTop: '10px', fontWeight: 700 }}>
+                  Thank you! Your review has been added below.
+                </p>
+              )}
+            </div>
+
+            {/* ── Submitted reviews ── */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxHeight: '560px', overflowY: 'auto', paddingRight: '4px' }}>
+              {reviews.map((rev, i) => (
+                <div
+                  key={i}
+                  style={{ background: '#F9F7F4', borderRadius: '16px', padding: '26px 28px', boxShadow: '0 4px 18px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', animation: i === 0 ? 'fadeInUp 0.5s ease-out both' : 'none' }}
+                >
+                  {/* Stars */}
+                  <div style={{ display: 'flex', gap: '3px', marginBottom: '12px' }}>
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill={s <= rev.rating ? '#F4A720' : '#DDD5CC'}>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                  {/* Text */}
+                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.92rem', color: '#5C3D2A', lineHeight: 1.75, marginBottom: '18px', fontStyle: 'italic' }}>
+                    &ldquo;{rev.text}&rdquo;
+                  </p>
+                  {/* Author */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, #6AB04C, #3D1A0A)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <span style={{ color: '#fff', fontFamily: "'Nunito', sans-serif", fontWeight: 800, fontSize: '0.95rem' }}>
+                        {rev.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.88rem', color: '#3D1A0A' }}>{rev.name}</div>
+                      <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: '#8C7B6E' }}>{rev.date}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
