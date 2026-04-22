@@ -280,7 +280,6 @@ export default function Home() {
                 </div>
                 {/* Card Body */}
                 <div style={{ padding: '28px 26px' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{svc.icon}</div>
                   <h3
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",

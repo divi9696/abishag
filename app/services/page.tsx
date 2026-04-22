@@ -261,7 +261,6 @@ export default function Services() {
                   onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
                 />
               </div>
-              <div style={{ fontSize: '2.8rem', marginBottom: '16px' }}>{service.icon}</div>
               <h3
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
