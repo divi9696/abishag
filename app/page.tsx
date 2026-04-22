@@ -33,6 +33,51 @@ export default function Home() {
     },
   ];
 
+  const previewServices = [
+    {
+      id: 1,
+      title: 'Caregiver Services',
+      desc: 'Professional caregiver support for daily living activities, companionship, and personal care.',
+      icon: '🏥',
+      image: '/images/Abishag_img/1. Caregiver Services.png',
+    },
+    {
+      id: 2,
+      title: 'Nursing Services',
+      desc: 'Skilled nursing care at home including wound care, medication management, and post-operative support.',
+      icon: '❤️',
+      image: '/images/Abishag_img/2. Nursing Services.png',
+    },
+    {
+      id: 3,
+      title: 'Hospice Care',
+      desc: 'Compassionate end-of-life care focused on comfort, dignity, and emotional support.',
+      icon: '🕊️',
+      image: '/images/Abishag_img/3. Hospice Care.png',
+    },
+    {
+      id: 4,
+      title: 'Dementia Care',
+      desc: 'Specialized memory and cognitive care for patients with dementia or Alzheimer\'s.',
+      icon: '🧠',
+      image: '/images/Abishag_img/4. Dementia Care.png',
+    },
+    {
+      id: 5,
+      title: 'Allied Health Visit',
+      desc: 'Home visits by allied health professionals including physiotherapists and occupational therapists.',
+      icon: '🧘',
+      image: '/images/Abishag_img/5. Allied Health Visit.png',
+    },
+    {
+      id: 6,
+      title: 'Nurse Visit (On-demand)',
+      desc: 'On-call and scheduled nurse visits for health monitoring, medication administration, and emergency assessments.',
+      icon: '🚐',
+      image: '/images/Abishag_img/6. Nurse Visit (On-demand).png',
+    },
+  ];
+
   return (
     <div style={{ background: '#F4F1ED' }}>
 
@@ -156,6 +201,144 @@ export default function Home() {
               }}
             >
               About Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SERVICES PREVIEW ── */}
+      <section style={{ background: '#F4F1ED', padding: '80px 0 60px' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p
+              style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 700,
+                fontSize: '0.7rem',
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: '#6AB04C',
+                marginBottom: '12px',
+              }}
+            >
+              What We Offer
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 'clamp(1.9rem, 4vw, 3rem)',
+                fontWeight: 700,
+                color: '#3D1A0A',
+              }}
+            >
+              Our Services
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {previewServices.map((svc, index) => (
+              <a
+                key={svc.id}
+                href="/services"
+                style={{
+                  background: '#ffffff',
+                  borderRadius: '18px',
+                  overflow: 'hidden',
+                  borderTop: '5px solid #6AB04C',
+                  boxShadow: '0 4px 22px rgba(61,26,10,0.07)',
+                  cursor: 'pointer',
+                  transition: 'transform 0.35s ease, box-shadow 0.35s ease',
+                  display: 'block',
+                  textDecoration: 'none',
+                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget;
+                  el.style.transform = 'translateY(-7px)';
+                  el.style.boxShadow = '0 18px 44px rgba(61,26,10,0.13)';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget;
+                  el.style.transform = 'translateY(0)';
+                  el.style.boxShadow = '0 4px 22px rgba(61,26,10,0.07)';
+                }}
+              >
+                {/* Card Image */}
+                <div style={{ height: '190px', overflow: 'hidden' }}>
+                  <img
+                    src={svc.image}
+                    alt={svc.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.4s ease',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.07)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                  />
+                </div>
+                {/* Card Body */}
+                <div style={{ padding: '28px 26px' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{svc.icon}</div>
+                  <h3
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: '1.3rem',
+                      fontWeight: 700,
+                      color: '#3D1A0A',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    {svc.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Nunito', sans-serif",
+                      color: '#5C3D2A',
+                      fontSize: '0.9rem',
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    {svc.desc}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* View All Button */}
+          <div className="text-center" style={{ marginTop: '52px' }}>
+            <a
+              href="/services"
+              style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 800,
+                fontSize: '0.97rem',
+                color: '#ffffff',
+                background: '#3D1A0A',
+                padding: '16px 48px',
+                borderRadius: '12px',
+                textDecoration: 'none',
+                letterSpacing: '0.04em',
+                transition: 'background 0.25s, transform 0.25s, box-shadow 0.25s',
+                display: 'inline-block',
+                boxShadow: '0 6px 26px rgba(61,26,10,0.25)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget;
+                el.style.background = '#6AB04C';
+                el.style.transform = 'translateY(-3px) scale(1.04)';
+                el.style.boxShadow = '0 14px 34px rgba(106,176,76,0.35)';
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget;
+                el.style.background = '#3D1A0A';
+                el.style.transform = 'translateY(0) scale(1)';
+                el.style.boxShadow = '0 6px 26px rgba(61,26,10,0.25)';
+              }}
+            >
+              View All Services →
             </a>
           </div>
         </div>

@@ -5,45 +5,123 @@ import { useState, useEffect } from 'react';
 const services = [
   {
     id: 1,
-    title: "Daily Care & Activities",
-    description: "Comprehensive daily care routines including meals, personal hygiene, and recreational activities designed to maintain engagement and wellness.",
+    title: "Caregiver Services",
+    description: "Professional caregiver support for daily living activities, companionship, and personal care to help seniors live comfortably at home.",
     icon: "🏥",
-    details: "Morning exercises, meal preparation, afternoon games, and social activities",
+    image: "/images/Abishag_img/1. Caregiver Services.png",
+    details: "Personal hygiene assistance, companionship, daily routine support, and household help",
   },
   {
     id: 2,
-    title: "Health Monitoring",
-    description: "Regular health check-ups, medication management, and vital signs monitoring by trained healthcare professionals.",
+    title: "Nursing Services",
+    description: "Skilled nursing care at home including wound care, medication management, and post-operative support by licensed nurses.",
     icon: "❤️",
-    details: "Blood pressure monitoring, medication schedules, health assessments, emergency support",
+    image: "/images/Abishag_img/2. Nursing Services.png",
+    details: "Wound care, medication schedules, health assessments, IV therapy, and emergency support",
   },
   {
     id: 3,
-    title: "Nutrition & Meal Services",
-    description: "Specially prepared meals considering dietary requirements, nutritional needs, and food preferences of our seniors.",
-    icon: "🍽️",
-    details: "Balanced meals, dietary accommodations, hydration monitoring, special diets",
+    title: "Hospice Care",
+    description: "Compassionate end-of-life care focused on comfort, dignity, and emotional support for patients and their families.",
+    icon: "🕊️",
+    image: "/images/Abishag_img/3. Hospice Care.png",
+    details: "Pain management, emotional counseling, family support, spiritual care, and comfort measures",
   },
   {
     id: 4,
-    title: "Social & Recreational Programs",
-    description: "Engaging activities, games, cultural programs, and entertainment to promote social interaction and mental stimulation.",
-    icon: "🎭",
-    details: "Games, music therapy, movie nights, social gatherings, and cultural events",
+    title: "Dementia Care",
+    description: "Specialized memory and cognitive care for patients with dementia or Alzheimer's, providing a safe and structured environment.",
+    icon: "🧠",
+    image: "/images/Abishag_img/4. Dementia Care.png",
+    details: "Memory activities, behavioral support, safe environment, caregiver guidance, and daily routines",
   },
   {
     id: 5,
-    title: "Physical & Wellness Activities",
-    description: "Gentle exercises, yoga, and wellness programs designed to maintain mobility and improve overall health.",
+    title: "Allied Health Visit",
+    description: "Home visits by allied health professionals including physiotherapists, occupational therapists, and speech therapists.",
     icon: "🧘",
-    details: "Yoga sessions, stretching, walking programs, mobility exercises, wellness workshops",
+    image: "/images/Abishag_img/5. Allied Health Visit.png",
+    details: "Physiotherapy, occupational therapy, speech therapy, rehabilitation, and functional assessments",
   },
   {
     id: 6,
-    title: "Transportation Services",
-    description: "Safe and comfortable transportation for medical appointments and other necessary outings.",
+    title: "Nurse Visit (On-demand)",
+    description: "On-call and scheduled nurse visits for health monitoring, medication administration, and emergency assessments.",
     icon: "🚐",
-    details: "Doctor visits, shopping trips, recreational outings, hospital appointments",
+    image: "/images/Abishag_img/6. Nurse Visit (On-demand).png",
+    details: "Vital signs monitoring, on-demand visits, medication checks, and urgent health assessments",
+  },
+  {
+    id: 7,
+    title: "Geriatric Care",
+    description: "Comprehensive care tailored for the elderly, addressing complex health needs and promoting a higher quality of life.",
+    icon: "👴",
+    image: "/images/Abishag_img/7. Geriatric Care.png",
+    details: "Geriatric assessments, chronic disease management, fall prevention, and wellness monitoring",
+  },
+  {
+    id: 8,
+    title: "Palliative Care",
+    description: "Relief-focused care for those with serious illnesses, prioritizing comfort, pain management, and quality of life.",
+    icon: "💙",
+    image: "/images/Abishag_img/8. Palliative Care.png",
+    details: "Pain relief, symptom management, emotional support, care coordination, and family counseling",
+  },
+  {
+    id: 9,
+    title: "Medical Equipment Setup",
+    description: "Professional setup and management of home medical equipment for patients requiring assisted care at home.",
+    icon: "🔧",
+    image: "/images/Abishag_img/9. Medical Equipment Setup.png",
+    details: "Oxygen setup, hospital beds, wheelchairs, monitoring devices, and equipment training",
+  },
+  {
+    id: 10,
+    title: "ICU Setup at Home",
+    description: "Advanced home ICU setup for critically ill patients who require hospital-level care in the comfort of their home.",
+    icon: "🏨",
+    image: "/images/Abishag_img/10. ICU Setup at Home.png",
+    details: "Ventilator support, cardiac monitoring, critical care nursing, and 24/7 medical supervision",
+  },
+  {
+    id: 11,
+    title: "Care Coordination",
+    description: "End-to-end coordination of care services, ensuring seamless communication between caregivers, doctors, and family.",
+    icon: "📋",
+    image: "/images/Abishag_img/11. Care Coordination.png",
+    details: "Care planning, doctor coordination, family communication, service scheduling, and progress tracking",
+  },
+  {
+    id: 12,
+    title: "Lab Sample Collection",
+    description: "Convenient home-based lab sample collection for diagnostic tests, eliminating the need for hospital visits.",
+    icon: "🧪",
+    image: "/images/Abishag_img/12. Lab Sample Collection.png",
+    details: "Blood tests, urine analysis, swab collections, sample transport, and result delivery",
+  },
+  {
+    id: 13,
+    title: "Pharmacy Delivery",
+    description: "Timely delivery of prescribed medications and medical supplies directly to your doorstep.",
+    icon: "💊",
+    image: "/images/Abishag_img/13. Pharmacy Delivery.png",
+    details: "Prescription fulfillment, medication packaging, delivery scheduling, and refill reminders",
+  },
+  {
+    id: 15,
+    title: "Dietician Consultation",
+    description: "Personalized dietary counseling and meal planning by certified dieticians for optimal nutrition and health.",
+    icon: "🥗",
+    image: "/images/Abishag_img/15. Dietician Consultation.png",
+    details: "Nutritional assessments, diet plans, therapeutic nutrition, and ongoing dietary support",
+  },
+  {
+    id: 16,
+    title: "Mental Health Counseling",
+    description: "Professional mental health support for seniors and families dealing with anxiety, depression, grief, or isolation.",
+    icon: "🧩",
+    image: "/images/Abishag_img/16. Mental Health Counseling.png",
+    details: "Individual counseling, family therapy, grief support, stress management, and behavioral health",
   },
 ];
 
@@ -168,6 +246,21 @@ export default function Services() {
                   : '0 4px 22px rgba(61,26,10,0.07)';
               }}
             >
+              {/* Service Image */}
+              <div style={{ borderRadius: '10px', overflow: 'hidden', marginBottom: '20px', height: '180px', position: 'relative' }}>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transition: 'transform 0.4s ease',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
+                  onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                />
+              </div>
               <div style={{ fontSize: '2.8rem', marginBottom: '16px' }}>{service.icon}</div>
               <h3
                 style={{
