@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div style={{ width: '54px', height: '54px', borderRadius: '13px', overflow: 'hidden', background: 'rgba(255,255,255,0.12)', flexShrink: 0 }}>
+              <div style={{ width: '54px', height: '54px', borderRadius: '13px', overflow: 'hidden', background: '#ffffff', flexShrink: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
                 <img src="/logo-transparent.png" alt="Abishag" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
               </div>
               <div>

@@ -207,6 +207,10 @@ export default function IntroAnimation({ onComplete }: Props) {
             className={step >= 2 ? 'intro-logo-glow' : ''}
             style={{
               width: '118px', height: '118px',
+              background: '#ffffff',
+              borderRadius: '50%',
+              padding: '8px',
+              boxShadow: '0 0 30px rgba(255,255,255,0.4)',
               opacity: step >= 2 ? 1 : 0,
               transform: step >= 2
                 ? 'scale(1) translateY(0) rotate(0deg)'
