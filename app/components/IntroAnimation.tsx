@@ -214,7 +214,7 @@ export default function IntroAnimation({ onComplete }: Props) {
               transition: 'opacity 0.8s ease, transform 0.9s cubic-bezier(0.34,1.56,0.64,1)',
             }}
           >
-            <img src="/logo.png" alt="Abishag" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            <img src="/logo-transparent.png" alt="Abishag" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
         </div>
 

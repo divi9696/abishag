@@ -26,9 +26,9 @@ export default function Navigation() {
             >
               {/* ── Fix 3: updated to logo.png ── */}
               <img
-                src="/logo.png"
+                src="/logo-transparent.png"
                 alt="Abishag Logo"
-                style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>

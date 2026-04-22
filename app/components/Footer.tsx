@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-5">
               <div style={{ width: '54px', height: '54px', borderRadius: '13px', overflow: 'hidden', background: 'rgba(255,255,255,0.12)', flexShrink: 0 }}>
-                <img src="/logo.png" alt="Abishag" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
+                <img src="/logo-transparent.png" alt="Abishag" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }} />
               </div>
               <div>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontWeight: 700, color: '#ffffff' }}>
