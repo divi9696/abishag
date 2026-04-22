@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
+/* ── Brand Color Palette — exact logo colors ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --background:        #F4F1ED;   /* logo off-white background */
+  --surface:           #FFFFFF;
+
+  /* Logo Brown — tree trunk, roof, circle */
+  --brand-brown:       #3D1A0A;
+  --brand-brown-mid:   #6B3020;
+  --brand-brown-light: #F5EDE6;
+
+  /* Logo Green — leaves & "Abishag" script */
+  --brand-green:       #6AB04C;
+  --brand-green-dark:  #4A8A30;
+  --brand-green-light: #EAF5E0;
+
+  /* Logo Navy/Indigo — "Home Health Services" text */
+  --brand-navy:        #2D2873;
+  --brand-navy-light:  #ECEAFC;
+
+  /* Logo Sky Blue — "life" word */
+  --brand-sky:         #4ABED6;
+  --brand-sky-light:   #E2F7FB;
+
+  /* Typography */
+  --text-primary:   #3D1A0A;
+  --text-secondary: #5C3D2A;
+  --text-muted:     #8A7060;
+  --border:         #DDD5CC;
+  --foreground:     #3D1A0A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Google Fonts loaded in layout.tsx via <link> ──
+   Primary heading: Cormorant Garamond (elegant serif — perfect for health/care)
+   Body / UI:       Nunito (rounded, warm, friendly sans-serif)
+   ─────────────────────────────────────────────────── */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.18;
+  color: var(--brand-brown);
+}
+
+/* ── Tailwind @theme ── */
+@theme inline {
+  --color-background:        var(--background);
+  --color-foreground:        var(--foreground);
+  --font-sans:               'Nunito', sans-serif;
+  --font-serif:              'Cormorant Garamond', serif;
+  --color-brand-brown:       var(--brand-brown);
+  --color-brand-green:       var(--brand-green);
+  --color-brand-navy:        var(--brand-navy);
+  --color-brand-sky:         var(--brand-sky);
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kenBurnsZoomInRight {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  100% { transform: scale(1.05) translate(0.3%, 0%); }
+}
+@keyframes kenBurnsZoomInLeft {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  100% { transform: scale(1.05) translate(-0.3%, 0%); }
+}
+@keyframes kenBurnsZoomInTop {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  100% { transform: scale(1.05) translate(0%, -0.3%); }
+}
+
+.ken-burns-zoom-in-right {
+  animation: kenBurnsZoomInRight ease-in-out forwards;
+  will-change: transform;
+}
+.ken-burns-zoom-in-left {
+  animation: kenBurnsZoomInLeft ease-in-out forwards;
+  will-change: transform;
+}
+.ken-burns-zoom-in-top {
+  animation: kenBurnsZoomInTop ease-in-out forwards;
+  will-change: transform;
+}
+
+/* ── Intro Animation Keyframes ── */
+@keyframes floatParticle {
+  0%   { transform: translateY(0)   scale(1)   rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(-110vh) scale(0.4) rotate(360deg); opacity: 0; }
+}
+
+@keyframes introPulseRing {
+  0%   { transform: scale(1);    opacity: 0.12; }
+  50%  { transform: scale(1.06); opacity: 0.06; }
+  100% { transform: scale(1);    opacity: 0.12; }
+}
+
+@keyframes introLogoGlow {
+  0%   { filter: drop-shadow(0 0 0px  rgba(106,176,76,0)); }
+  50%  { filter: drop-shadow(0 0 30px rgba(106,176,76,0.45)); }
+  100% { filter: drop-shadow(0 0 14px rgba(106,176,76,0.2)); }
+}
+
+@keyframes introLineGrow {
+  from { width: 0; }
+  to   { width: 220px; }
+}
+
+.intro-pulse-ring { animation: introPulseRing 3s ease-in-out infinite; }
+.intro-logo-glow  { animation: introLogoGlow  2s ease-in-out forwards; }
+.intro-line-grow  { animation: introLineGrow  0.9s ease forwards; }
+
