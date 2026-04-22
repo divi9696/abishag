@@ -24,10 +24,10 @@ export default function Home() {
     {
       emoji: '🏠',
       title: 'Safe Environment',
-      desc: 'A secure and comfortable home-care setup designed specifically for the needs of our elderly residents.',
+      desc: 'A secure and comfortable facility designed specifically for the needs of our elderly residents.',
     },
     {
-      emoji: '🌿',
+      emoji: '🌟',
       title: 'Holistic Wellness',
       desc: 'We focus on physical health, mental wellbeing, and social engagement for a better quality of life.',
     },
@@ -276,7 +276,7 @@ export default function Home() {
               fontWeight: 300,
             }}
           >
-            Contact us today to learn more about our services and schedule a home visit.
+            Contact us today to learn more about our services and schedule a visit.
           </p>
           <a
             href="/about"
