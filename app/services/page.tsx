@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Services() {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,46 +14,129 @@ export default function Services() {
   const services = [
     {
       id: 1,
-      title: "Daily Care & Activities",
-      description: "Comprehensive daily care routines including meals, personal hygiene, and recreational activities designed to maintain engagement and wellness.",
-      icon: "🏥",
-      details: "Morning exercises, meal preparation, afternoon games, and social activities"
+      title: "Caregiver Services (Non-Medical Support)",
+      icon: "🤝",
+      image: "/images/Abishag_img/1. Caregiver Services.png",
+      scope: "Personal hygiene (Bathing, Grooming, Oral care) • Toileting & Diaper management • Feeding assistance (Oral / Ryle's tube support under guidance) • Mobility assistance (Bed to chair, ambulation support) • Bedridden care & repositioning (Bedsore prevention) • Companionship & emotional support • Vital signs monitoring (basic: temperature, pulse) • Sleep supervision & safety monitoring",
+      targetPatients: "Elderly / Geriatric • Post-surgery recovery • Stroke / Paralysis patients • Dementia / Alzheimer's cases"
     },
     {
       id: 2,
-      title: "Health Monitoring",
-      description: "Regular health check-ups, medication management, and vital signs monitoring by trained healthcare professionals.",
+      title: "Nursing Services (Clinical Care at Home)",
       icon: "❤️",
-      details: "Blood pressure monitoring, medication schedules, health assessments, emergency support"
+      image: "/images/Abishag_img/2. Nursing Services.png",
+      scope: "Medication administration (Oral / IM / IV) • Injection & infusion therapy • Wound care & dressing (post-surgical, diabetic wounds) • Catheter care (Foley / Suprapubic) • Tracheostomy care & suctioning • Ryle's tube feeding & care • Oxygen therapy management • Monitoring vitals (BP, Sugar, SpO2)",
+      targetPatients: "ICU-trained nurses • Ventilator handling (under supervision) • Critical care monitoring"
     },
     {
       id: 3,
-      title: "Nutrition & Meal Services",
-      description: "Specially prepared meals considering dietary requirements, nutritional needs, and food preferences of our seniors.",
-      icon: "🍽️",
-      details: "Balanced meals, dietary accommodations, hydration monitoring, special diets"
+      title: "Hospice Care",
+      icon: "🕯️",
+      image: "/images/Abishag_img/3. Hospice Care.png",
+      scope: "End-of-life comfort care • Pain & symptom management • Emotional & psychological support • Spiritual care (as per patient beliefs) • Family counseling & bereavement support",
+      focus: "Dignity, comfort, and quality of life rather than cure"
     },
     {
       id: 4,
-      title: "Social & Recreational Programs",
-      description: "Engaging activities, games, cultural programs, and entertainment to promote social interaction and mental stimulation.",
-      icon: "🎭",
-      details: "Games, music therapy, movie nights, social gatherings, and cultural events"
+      title: "Dementia Care",
+      icon: "🧠",
+      image: "/images/Abishag_img/4. Dementia Care.png",
+      scope: "Memory care routines • Behavioral management (agitation, wandering) • Safety supervision (fall prevention) • Cognitive engagement activities • Family education & support",
+      conditions: "Alzheimer's Disease • Parkinson's-related dementia • Age-related cognitive decline"
     },
     {
       id: 5,
-      title: "Physical & Wellness Activities",
-      description: "Gentle exercises, yoga, and wellness programs designed to maintain mobility and improve overall health.",
-      icon: "🧘",
-      details: "Yoga sessions, stretching, walking programs, mobility exercises, wellness workshops"
+      title: "Allied Health & Professional Visits",
+      icon: "👨‍⚕️",
+      image: "/images/Abishag_img/5. Allied Health Visit.png",
+      scope: "Physician Visit - General health assessment, Treatment plan review, Prescription management • Physiotherapist - Mobility & strengthening exercises, Stroke rehabilitation, Pain management therapy • Speech Therapist - Swallowing therapy, Speech recovery (post-stroke) • Pastor / Spiritual Care Provider - Prayer support, Spiritual counseling, End-of-life spiritual guidance • Social Worker - Psychosocial assessment, Family counseling, Resource coordination"
     },
     {
       id: 6,
-      title: "Transportation Services",
-      description: "Safe and comfortable transportation for medical appointments and other necessary outings.",
-      icon: "🚐",
-      details: "Doctor visits, shopping trips, recreational outings, hospital appointments"
+      title: "Nurse Visits (On-Demand / Periodic)",
+      icon: "⚕️",
+      image: "/images/Abishag_img/6. Nurse Visit (On-demand).png",
+      scope: "Injection administration • IV cannulation • Wound dressing • Catheter insertion/removal • Vitals monitoring • Health assessment",
+      models: "One-time visit • Scheduled visits • Follow-up care plans"
     },
+    {
+      id: 7,
+      title: "Geriatric / Elderly Care",
+      icon: "👴",
+      image: "/images/Abishag_img/7. Geriatric Care.png",
+      scope: "Long-term elderly care planning • Fall prevention strategies • Chronic disease management (Diabetes, Hypertension) • Daily routine support • Mental well-being & companionship",
+      approach: "Holistic care (Physical + Emotional + Social)"
+    },
+    {
+      id: 8,
+      title: "Palliative Care Management",
+      icon: "💚",
+      image: "/images/Abishag_img/8. Palliative Care.png",
+      scope: "Pain management (Cancer / Chronic illness) • Symptom control (breathlessness, nausea, fatigue) • Psychological & emotional care • Family guidance • Coordination with doctors",
+      conditions: "Cancer patients • End-stage organ failure • Chronic debilitating illnesses"
+    },
+    {
+      id: 9,
+      title: "Medical Equipment Rental / Sales",
+      icon: "🏥",
+      image: "/images/Abishag_img/9. Medical Equipment Setup.png",
+      equipment: "Oxygen concentrators • Hospital beds (Manual / Motorized) • Wheelchairs & walkers • Suction machines • BiPAP / CPAP machines • Patient monitors • Air mattresses (Bedsore prevention)",
+      services: "Delivery & installation • Maintenance support • Training for caregivers"
+    },
+    {
+      id: 10,
+      title: "ICU Setup @ Home (Critical Care at Home)",
+      icon: "🚨",
+      image: "/images/Abishag_img/10. ICU Setup at Home.png",
+      scope: "Complete ICU bed setup • Ventilator support • Cardiac monitor installation • Oxygen pipeline setup • Infusion pumps & suction apparatus • 24/7 ICU nurse deployment • Doctor on-call / periodic visits",
+      support: "Biomedical technician support • Emergency backup protocols • Ambulance coordination"
+    },
+    {
+      id: 11,
+      title: "Integrated Care Coordination",
+      icon: "📋",
+      image: "/images/Abishag_img/11. Care Coordination.png",
+      scope: "Case manager allocation • Care plan development • Regular monitoring & reporting • Family communication • Emergency response coordination • Replacement & staffing management"
+    },
+    {
+      id: 12,
+      title: "Lab Sample Collection at Home",
+      icon: "🧪",
+      image: "/images/Abishag_img/12. Lab Sample Collection.png",
+      scope: "Blood sample collection (Routine / Fasting / Postprandial) • Urine, stool, sputum sample collection • Specialized tests (HbA1c, Thyroid profile, Lipid profile, etc.) • Sample transport to accredited labs (NABL-certified preferred) • Digital report delivery (WhatsApp / Email)",
+      features: "Trained phlebotomists • Infection control protocols • Early morning fasting collections • Integration with doctor consultation"
+    },
+    {
+      id: 13,
+      title: "Pharmacy Delivery",
+      icon: "💊",
+      image: "/images/Abishag_img/13. Pharmacy Delivery.png",
+      scope: "Prescription medicine delivery • OTC medications supply • Consumables (Diapers, gloves, syringes, dressings) • Medical nutrition products (Ensure, protein supplements)",
+      features: "Tie-up with licensed pharmacies • Prescription validation compliance • Same-day / scheduled delivery • Refill reminders for chronic patients"
+    },
+    {
+      id: 14,
+      title: "Teleconsultation Support",
+      icon: "📱",
+      scope: "Doctor consultation via video / audio call • Follow-up consultations • Second opinion services • Specialist consultations (Physician, Neurologist, etc.)",
+      features: "Appointment scheduling • Digital prescription sharing • Integration with patient records • Emergency escalation guidance"
+    },
+    {
+      id: 15,
+      title: "Dietician Consultation",
+      icon: "🥗",
+      image: "/images/Abishag_img/15. Dietician Consultation.png",
+      scope: "Personalized diet planning • Therapeutic diets: Diabetic diet, Renal diet, Cardiac diet, Post-surgical nutrition • Tube feeding diet planning (Ryle's tube / PEG)",
+      features: "Initial assessment (medical history + lifestyle) • Weekly / monthly follow-ups • Meal plan customization (regional preferences)"
+    },
+    {
+      id: 16,
+      title: "Mental Health Counseling",
+      icon: "🧘‍♀️",
+      image: "/images/Abishag_img/16. Mental Health Counseling.png",
+      scope: "Psychological counseling (patients & family) • Depression / anxiety management • Caregiver stress management • Grief & bereavement counseling • Cognitive behavioral support",
+      professionals: "Psychologists • Clinical counselors • Psychiatrist (if required for medication)"
+    }
   ];
 
   return (
@@ -88,23 +172,114 @@ export default function Services() {
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="relative z-10">
+                {service.image && (
+                  <div className="mb-4 w-full h-48 relative overflow-hidden rounded-lg">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                )}
                 <div className="text-6xl mb-4 group-hover:scale-125 transition-transform duration-300">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-700 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {service.description}
-                </p>
 
                 {/* Expandable Details */}
-                <div className={`overflow-hidden transition-all duration-300 ${expandedCard === service.id ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <div className="pt-4 border-t-2 border-green-200">
-                    <p className="text-gray-600 text-sm">
-                      <strong className="text-green-700">What's Included:</strong><br/>
-                      {service.details}
-                    </p>
+                <div className={`overflow-hidden transition-all duration-300 ${expandedCard === service.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <div className="pt-4 border-t-2 border-green-200 space-y-3">
+                    {service.scope && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Scope:</strong><br/>
+                          {service.scope}
+                        </p>
+                      </div>
+                    )}
+                    {service.targetPatients && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Target Patients:</strong><br/>
+                          {service.targetPatients}
+                        </p>
+                      </div>
+                    )}
+                    {service.focus && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Focus:</strong><br/>
+                          {service.focus}
+                        </p>
+                      </div>
+                    )}
+                    {service.conditions && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Conditions:</strong><br/>
+                          {service.conditions}
+                        </p>
+                      </div>
+                    )}
+                    {service.models && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Models:</strong><br/>
+                          {service.models}
+                        </p>
+                      </div>
+                    )}
+                    {service.approach && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Approach:</strong><br/>
+                          {service.approach}
+                        </p>
+                      </div>
+                    )}
+                    {service.equipment && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Equipment:</strong><br/>
+                          {service.equipment}
+                        </p>
+                      </div>
+                    )}
+                    {service.services && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Services:</strong><br/>
+                          {service.services}
+                        </p>
+                      </div>
+                    )}
+                    {service.support && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Support:</strong><br/>
+                          {service.support}
+                        </p>
+                      </div>
+                    )}
+                    {service.features && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Features:</strong><br/>
+                          {service.features}
+                        </p>
+                      </div>
+                    )}
+                    {service.professionals && (
+                      <div>
+                        <p className="text-gray-600 text-sm">
+                          <strong className="text-green-700">Professionals:</strong><br/>
+                          {service.professionals}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
 

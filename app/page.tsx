@@ -17,7 +17,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6 animate-pulse">
+            <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Welcome to Abhishag
             </h1>
             <p className="text-xl text-gray-700 mb-4 font-semibold">
@@ -46,7 +46,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center animate-bounce">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
             Why Choose Abhishag?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -84,12 +84,12 @@ export default function Home() {
       <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-16 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-2xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-2xl"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-4xl font-bold mb-6 animate-bounce">Ready to Join Our Community?</h2>
+          <h2 className="text-4xl font-bold mb-6">Ready to Join Our Community?</h2>
           <p className="text-xl mb-8">
             Contact us today to learn more about our services and schedule a visit.
           </p>
