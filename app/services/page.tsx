@@ -16,7 +16,7 @@ const services = [
     title: "Nursing Services",
     description: "Skilled nursing care at home including wound care, medication management, and post-operative support by licensed nurses.",
     icon: "❤️",
-    image: "/images/Abishag_img/2. Nursing Services.png",
+    image: "/images/Abishag_img/11. Care Coordination.png",
     details: "Wound care, medication schedules, health assessments, IV therapy, and emergency support",
   },
   {
@@ -24,7 +24,7 @@ const services = [
     title: "Hospice Care",
     description: "Compassionate end-of-life care focused on comfort, dignity, and emotional support for patients and their families.",
     icon: "🕊️",
-    image: "/images/Abishag_img/3. Hospice Care.png",
+    image: "/images/Abishag_img/9. Medical Equipment Setup.png",
     details: "Pain management, emotional counseling, family support, spiritual care, and comfort measures",
   },
   {
@@ -32,7 +32,7 @@ const services = [
     title: "Dementia Care",
     description: "Specialized memory and cognitive care for patients with dementia or Alzheimer's, providing a safe and structured environment.",
     icon: "🧠",
-    image: "/images/Abishag_img/4. Dementia Care.png",
+    image: "/images/Abishag_img/13. Pharmacy Delivery.png",
     details: "Memory activities, behavioral support, safe environment, caregiver guidance, and daily routines",
   },
   {
@@ -40,7 +40,7 @@ const services = [
     title: "Allied Health Visit",
     description: "Home visits by allied health professionals including physiotherapists, occupational therapists, and speech therapists.",
     icon: "🧘",
-    image: "/images/Abishag_img/5. Allied Health Visit.png",
+    image: "/images/Abishag_img/12. Lab Sample Collection.png",
     details: "Physiotherapy, occupational therapy, speech therapy, rehabilitation, and functional assessments",
   },
   {
@@ -48,7 +48,7 @@ const services = [
     title: "Nurse Visit (On-demand)",
     description: "On-call and scheduled nurse visits for health monitoring, medication administration, and emergency assessments.",
     icon: "🚐",
-    image: "/images/Abishag_img/6. Nurse Visit (On-demand).png",
+    image: "/images/Abishag_img/3. Hospice Care.png",
     details: "Vital signs monitoring, on-demand visits, medication checks, and urgent health assessments",
   },
   {
@@ -56,7 +56,7 @@ const services = [
     title: "Geriatric Care",
     description: "Comprehensive care tailored for the elderly, addressing complex health needs and promoting a higher quality of life.",
     icon: "👴",
-    image: "/images/Abishag_img/7. Geriatric Care.png",
+    image: "/images/Abishag_img/10. ICU Setup at Home.png",
     details: "Geriatric assessments, chronic disease management, fall prevention, and wellness monitoring",
   },
   {
@@ -64,7 +64,7 @@ const services = [
     title: "Palliative Care",
     description: "Relief-focused care for those with serious illnesses, prioritizing comfort, pain management, and quality of life.",
     icon: "💙",
-    image: "/images/Abishag_img/8. Palliative Care.png",
+    image: "/images/Abishag_img/15. Dietician Consultation.png",
     details: "Pain relief, symptom management, emotional support, care coordination, and family counseling",
   },
   {
@@ -72,7 +72,7 @@ const services = [
     title: "Medical Equipment Setup",
     description: "Professional setup and management of home medical equipment for patients requiring assisted care at home.",
     icon: "🔧",
-    image: "/images/Abishag_img/9. Medical Equipment Setup.png",
+    image: "/images/Abishag_img/8. Palliative Care.png",
     details: "Oxygen setup, hospital beds, wheelchairs, monitoring devices, and equipment training",
   },
   {
@@ -80,7 +80,7 @@ const services = [
     title: "ICU Setup at Home",
     description: "Advanced home ICU setup for critically ill patients who require hospital-level care in the comfort of their home.",
     icon: "🏨",
-    image: "/images/Abishag_img/10. ICU Setup at Home.png",
+    image: "/images/Abishag_img/7. Geriatric Care.png",
     details: "Ventilator support, cardiac monitoring, critical care nursing, and 24/7 medical supervision",
   },
   {
@@ -88,7 +88,7 @@ const services = [
     title: "Care Coordination",
     description: "End-to-end coordination of care services, ensuring seamless communication between caregivers, doctors, and family.",
     icon: "📋",
-    image: "/images/Abishag_img/11. Care Coordination.png",
+    image: "/images/Abishag_img/6. Nurse Visit (On-demand).png",
     details: "Care planning, doctor coordination, family communication, service scheduling, and progress tracking",
   },
   {
@@ -96,7 +96,7 @@ const services = [
     title: "Lab Sample Collection",
     description: "Convenient home-based lab sample collection for diagnostic tests, eliminating the need for hospital visits.",
     icon: "🧪",
-    image: "/images/Abishag_img/12. Lab Sample Collection.png",
+    image: "/images/Abishag_img/5. Allied Health Visit.png",
     details: "Blood tests, urine analysis, swab collections, sample transport, and result delivery",
   },
   {
@@ -104,7 +104,7 @@ const services = [
     title: "Pharmacy Delivery",
     description: "Timely delivery of prescribed medications and medical supplies directly to your doorstep.",
     icon: "💊",
-    image: "/images/Abishag_img/13. Pharmacy Delivery.png",
+    image: "/images/Abishag_img/4. Dementia Care.png",
     details: "Prescription fulfillment, medication packaging, delivery scheduling, and refill reminders",
   },
   {
@@ -112,7 +112,7 @@ const services = [
     title: "Dietician Consultation",
     description: "Personalized dietary counseling and meal planning by certified dieticians for optimal nutrition and health.",
     icon: "🥗",
-    image: "/images/Abishag_img/15. Dietician Consultation.png",
+    image: "/images/Abishag_img/2. Nursing Services.png",
     details: "Nutritional assessments, diet plans, therapeutic nutrition, and ongoing dietary support",
   },
   {
