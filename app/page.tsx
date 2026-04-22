@@ -30,12 +30,12 @@ export default function Home() {
   ];
 
   return (
-    <div style={{ background: '#fdfaf6' }}>
+    <div style={{ background: '#F4F1ED' }}>
       {/* ── CINEMATIC HERO ── */}
       <CinematicHero />
 
       {/* ── INTRO STRIP ── */}
-      <section style={{ background: '#ffffff', padding: '72px 0', borderBottom: '1px solid #e8e4dc' }}>
+      <section style={{ background: '#ffffff', padding: '80px 0', borderBottom: '1px solid #DDD5CC' }}>
         <div
           className="max-w-4xl mx-auto px-6 text-center"
           style={{
@@ -46,12 +46,12 @@ export default function Home() {
         >
           <p
             style={{
-              fontFamily: "'Lato', sans-serif",
-              fontWeight: 600,
-              fontSize: '0.75rem',
-              letterSpacing: '0.25em',
+              fontFamily: "'Nunito', sans-serif",
+              fontWeight: 700,
+              fontSize: '0.72rem',
+              letterSpacing: '0.28em',
               textTransform: 'uppercase',
-              color: '#5A9E22',
+              color: '#6AB04C',
               marginBottom: '14px',
             }}
           >
@@ -59,57 +59,59 @@ export default function Home() {
           </p>
           <h1
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(2rem,5vw,3.4rem)',
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 'clamp(2.2rem, 5vw, 3.6rem)',
               fontWeight: 700,
-              color: '#4A2111',
-              lineHeight: 1.13,
-              marginBottom: '18px',
+              color: '#3D1A0A',
+              lineHeight: 1.12,
+              marginBottom: '20px',
             }}
           >
-            Welcome to <span style={{ color: '#5A9E22' }}>Abhishag</span>
+            Welcome to{' '}
+            <span style={{ color: '#6AB04C' }}>Abishag</span>
           </h1>
           <p
             style={{
-              fontFamily: "'Lato', sans-serif",
-              fontSize: '1.1rem',
-              color: '#4a4a6a',
-              lineHeight: 1.8,
+              fontFamily: "'Nunito', sans-serif",
+              fontSize: '1.05rem',
+              color: '#5C3D2A',
+              lineHeight: 1.85,
               maxWidth: '640px',
-              margin: '0 auto 36px',
+              margin: '0 auto 40px',
               fontWeight: 400,
             }}
           >
-            Providing compassionate, professional daycare and home health services for elderly individuals. We focus on health, wellness, and creating a nurturing environment for our seniors.
+            Providing compassionate, professional daycare and home health services for elderly individuals.
+            We focus on health, wellness, and creating a nurturing environment for our seniors.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
             <a
               href="/services"
               style={{
-                fontFamily: "'Lato', sans-serif",
+                fontFamily: "'Nunito', sans-serif",
                 fontWeight: 700,
                 fontSize: '0.95rem',
                 color: '#ffffff',
-                background: '#5A9E22',
-                padding: '14px 32px',
+                background: '#6AB04C',
+                padding: '14px 34px',
                 borderRadius: '10px',
                 textDecoration: 'none',
-                letterSpacing: '0.03em',
+                letterSpacing: '0.04em',
                 transition: 'background 0.25s, transform 0.25s, box-shadow 0.25s',
                 display: 'inline-block',
-                boxShadow: '0 4px 18px rgba(90,158,34,0.3)',
+                boxShadow: '0 4px 20px rgba(106,176,76,0.35)',
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget;
-                el.style.background = '#4A2111';
+                el.style.background = '#3D1A0A';
                 el.style.transform = 'translateY(-2px)';
-                el.style.boxShadow = '0 8px 24px rgba(74,33,17,0.25)';
+                el.style.boxShadow = '0 8px 26px rgba(61,26,10,0.3)';
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget;
-                el.style.background = '#5A9E22';
+                el.style.background = '#6AB04C';
                 el.style.transform = 'translateY(0)';
-                el.style.boxShadow = '0 4px 18px rgba(90,158,34,0.3)';
+                el.style.boxShadow = '0 4px 20px rgba(106,176,76,0.35)';
               }}
             >
               Our Services
@@ -117,29 +119,29 @@ export default function Home() {
             <a
               href="/about"
               style={{
-                fontFamily: "'Lato', sans-serif",
+                fontFamily: "'Nunito', sans-serif",
                 fontWeight: 700,
                 fontSize: '0.95rem',
-                color: '#4A2111',
+                color: '#3D1A0A',
                 background: 'transparent',
-                padding: '13px 32px',
+                padding: '13px 34px',
                 borderRadius: '10px',
                 textDecoration: 'none',
-                letterSpacing: '0.03em',
-                border: '2px solid #4A2111',
+                letterSpacing: '0.04em',
+                border: '2px solid #3D1A0A',
                 transition: 'background 0.25s, color 0.25s, transform 0.25s',
                 display: 'inline-block',
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget;
-                el.style.background = '#4A2111';
+                el.style.background = '#3D1A0A';
                 el.style.color = '#ffffff';
                 el.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget;
                 el.style.background = 'transparent';
-                el.style.color = '#4A2111';
+                el.style.color = '#3D1A0A';
                 el.style.transform = 'translateY(0)';
               }}
             >
@@ -150,31 +152,31 @@ export default function Home() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section style={{ background: '#fdfaf6', padding: '80px 0' }}>
+      <section style={{ background: '#F4F1ED', padding: '88px 0' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p
               style={{
-                fontFamily: "'Lato', sans-serif",
-                fontWeight: 600,
-                fontSize: '0.72rem',
-                letterSpacing: '0.25em',
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 700,
+                fontSize: '0.7rem',
+                letterSpacing: '0.28em',
                 textTransform: 'uppercase',
-                color: '#5A9E22',
-                marginBottom: '10px',
+                color: '#4ABED6',
+                marginBottom: '12px',
               }}
             >
               Trusted by Families Across Chennai
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: 'clamp(1.8rem,4vw,2.8rem)',
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 'clamp(1.9rem, 4vw, 3rem)',
                 fontWeight: 700,
-                color: '#4A2111',
+                color: '#3D1A0A',
               }}
             >
-              Why Choose Abhishag?
+              Why Choose Abishag?
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -183,31 +185,31 @@ export default function Home() {
                 key={title}
                 style={{
                   background: '#ffffff',
-                  borderRadius: '16px',
-                  padding: '40px 32px',
-                  borderLeft: '5px solid #5A9E22',
-                  boxShadow: '0 4px 24px rgba(74,33,17,0.06)',
+                  borderRadius: '18px',
+                  padding: '44px 32px',
+                  borderLeft: '5px solid #6AB04C',
+                  boxShadow: '0 4px 28px rgba(61,26,10,0.07)',
                   cursor: 'pointer',
                   transition: 'transform 0.35s ease, box-shadow 0.35s ease',
                 }}
                 onMouseEnter={e => {
                   const el = e.currentTarget;
-                  el.style.transform = 'translateY(-6px)';
-                  el.style.boxShadow = '0 16px 40px rgba(74,33,17,0.13)';
+                  el.style.transform = 'translateY(-7px)';
+                  el.style.boxShadow = '0 18px 44px rgba(61,26,10,0.13)';
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget;
                   el.style.transform = 'translateY(0)';
-                  el.style.boxShadow = '0 4px 24px rgba(74,33,17,0.06)';
+                  el.style.boxShadow = '0 4px 28px rgba(61,26,10,0.07)';
                 }}
               >
                 <div style={{ fontSize: '3rem', marginBottom: '18px' }}>{emoji}</div>
                 <h3
                   style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: '1.35rem',
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: '1.45rem',
                     fontWeight: 700,
-                    color: '#4A2111',
+                    color: '#3D1A0A',
                     marginBottom: '12px',
                   }}
                 >
@@ -215,10 +217,10 @@ export default function Home() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'Lato', sans-serif",
-                    color: '#4a4a6a',
+                    fontFamily: "'Nunito', sans-serif",
+                    color: '#5C3D2A',
                     fontSize: '0.95rem',
-                    lineHeight: 1.75,
+                    lineHeight: 1.8,
                   }}
                 >
                   {desc}
@@ -232,36 +234,36 @@ export default function Home() {
       {/* ── CTA ── */}
       <section
         style={{
-          background: 'linear-gradient(135deg, #4A2111 0%, #7a3920 50%, #5A9E22 100%)',
-          padding: '88px 0',
+          background: 'linear-gradient(135deg, #3D1A0A 0%, #6B3020 48%, #4A8A30 100%)',
+          padding: '96px 0',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
         {/* Decorative blobs */}
-        <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.1 }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.09 }}>
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl animate-pulse" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
         </div>
         <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
           <h2
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(1.8rem,4vw,2.8rem)',
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: 700,
               color: '#ffffff',
-              marginBottom: '16px',
-              lineHeight: 1.2,
+              marginBottom: '18px',
+              lineHeight: 1.18,
             }}
           >
             Ready to Join Our Community?
           </h2>
           <p
             style={{
-              fontFamily: "'Lato', sans-serif",
-              fontSize: '1.1rem',
+              fontFamily: "'Nunito', sans-serif",
+              fontSize: '1.08rem',
               color: 'rgba(255,255,255,0.82)',
-              marginBottom: '40px',
+              marginBottom: '44px',
               fontWeight: 300,
             }}
           >
@@ -270,28 +272,28 @@ export default function Home() {
           <a
             href="/about"
             style={{
-              fontFamily: "'Lato', sans-serif",
-              fontWeight: 700,
-              fontSize: '1rem',
-              color: '#4A2111',
+              fontFamily: "'Nunito', sans-serif",
+              fontWeight: 800,
+              fontSize: '0.97rem',
+              color: '#3D1A0A',
               background: '#ffffff',
-              padding: '16px 40px',
+              padding: '16px 42px',
               borderRadius: '12px',
               textDecoration: 'none',
-              letterSpacing: '0.03em',
+              letterSpacing: '0.04em',
               transition: 'transform 0.25s, box-shadow 0.25s',
               display: 'inline-block',
-              boxShadow: '0 6px 24px rgba(0,0,0,0.15)',
+              boxShadow: '0 6px 26px rgba(0,0,0,0.17)',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget;
               el.style.transform = 'translateY(-3px) scale(1.04)';
-              el.style.boxShadow = '0 12px 32px rgba(0,0,0,0.22)';
+              el.style.boxShadow = '0 14px 34px rgba(0,0,0,0.24)';
             }}
             onMouseLeave={e => {
               const el = e.currentTarget;
               el.style.transform = 'translateY(0) scale(1)';
-              el.style.boxShadow = '0 6px 24px rgba(0,0,0,0.15)';
+              el.style.boxShadow = '0 6px 26px rgba(0,0,0,0.17)';
             }}
           >
             Get in Touch

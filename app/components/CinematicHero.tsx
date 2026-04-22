@@ -23,12 +23,6 @@ const SCENES = [
     kenBurns: 'zoom-in-top',
   },
   {
-    src: '/scene4.png',
-    title: 'Hospice & Palliative Care',
-    subtitle: 'Surrounded by love, supported with grace',
-    kenBurns: 'zoom-in-right',
-  },
-  {
     src: '/scene5.png',
     title: 'Teleconsultation Services',
     subtitle: 'Expert doctors just a tap away',
@@ -49,7 +43,7 @@ const SCENES = [
 ];
 
 const SCENE_DURATION = 4500;
-const TRANSITION_DURATION = 1400;
+const TRANSITION_DURATION = 1200;
 
 export default function CinematicHero() {
   const [current, setCurrent] = useState(0);
@@ -84,13 +78,22 @@ export default function CinematicHero() {
 
   return (
     <section
-      className="relative w-full overflow-hidden"
-      style={{ height: '92vh', minHeight: '600px' }}
+      className="relative w-full"
+      style={{
+        /*
+         * All scene images are 1024×1024 (square).
+         * To show the full image without cropping we use a 1:1
+         * padded-box trick — but that would be too tall on desktop.
+         * Instead we cap at 680px and use objectFit:'contain' so the
+         * entire square image is always visible, with the brand-brown
+         * colour filling any side bars (like a letterbox in portrait).
+         */
+        height: 'clamp(420px, 65vw, 680px)',
+        background: '#1C0A04',  /* deep brand-brown fills any letterbox gaps */
+        overflow: 'hidden',
+        position: 'relative',
+      }}
     >
-      {/* Cinematic letterbox bars */}
-      <div className="absolute top-0 left-0 right-0 z-20 bg-black" style={{ height: '3%' }} />
-      <div className="absolute bottom-0 left-0 right-0 z-20 bg-black" style={{ height: '3%' }} />
-
       {/* Scene layers */}
       {SCENES.map((scene, idx) => {
         const isCurrent = idx === current;
@@ -99,7 +102,7 @@ export default function CinematicHero() {
         return (
           <div
             key={idx}
-            className="absolute inset-0"
+            className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: isNext ? 2 : 1,
               opacity: isNext ? 1 : 1,
@@ -108,19 +111,34 @@ export default function CinematicHero() {
                 : undefined,
             }}
           >
+            {/*
+             * Ken-Burns wrapper — slightly zoom the image without
+             * aggressive translation so corners don't get clipped.
+             */}
             <div
               className={`ken-burns-${scene.kenBurns}`}
               style={{
                 position: 'absolute',
                 inset: 0,
                 animationDuration: `${SCENE_DURATION + TRANSITION_DURATION}ms`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <Image
                 src={scene.src}
                 alt={scene.title}
                 fill
-                style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                style={{
+                  /*
+                   * 'contain' ensures the complete 1024×1024 square image
+                   * is always fully visible. Any remaining space is covered
+                   * by the section's #1C0A04 background.
+                   */
+                  objectFit: 'contain',
+                  objectPosition: 'center center',
+                }}
                 priority={idx === 0 || idx === 1}
                 sizes="100vw"
               />
@@ -129,19 +147,20 @@ export default function CinematicHero() {
         );
       })}
 
-      {/* Multi-layer cinematic gradient overlays */}
+      {/* Gradient overlays — soften top/bottom edges to blend with brown bg */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 28%, transparent 52%, rgba(0,0,0,0.8) 100%)',
+            'linear-gradient(to bottom, rgba(28,10,4,0.55) 0%, transparent 22%, transparent 65%, rgba(28,10,4,0.85) 100%)',
         }}
       />
+      {/* Left vignette for caption readability */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at 15% 50%, transparent 35%, rgba(0,0,0,0.35) 100%)',
+            'linear-gradient(to right, rgba(28,10,4,0.45) 0%, transparent 55%)',
         }}
       />
 
@@ -149,43 +168,43 @@ export default function CinematicHero() {
       <div
         className="absolute z-30 left-0 right-0 px-8 sm:px-16 lg:px-28"
         style={{
-          bottom: '10%',
-          transition: `opacity ${TRANSITION_DURATION * 0.55}ms ease-in-out, transform ${TRANSITION_DURATION * 0.55}ms ease-in-out`,
+          bottom: '13%',
+          transition: `opacity ${TRANSITION_DURATION * 0.5}ms ease-in-out, transform ${TRANSITION_DURATION * 0.5}ms ease-in-out`,
           opacity: captionVisible ? 1 : 0,
           transform: captionVisible ? 'translateY(0)' : 'translateY(18px)',
         }}
       >
         <h2
           style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(1.9rem, 4.2vw, 3.4rem)',
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 'clamp(1.7rem, 4vw, 3.2rem)',
             fontWeight: 700,
             color: '#ffffff',
-            textShadow: '0 2px 28px rgba(0,0,0,0.65)',
-            lineHeight: 1.12,
-            marginBottom: '0.5rem',
-            letterSpacing: '-0.01em',
+            textShadow: '0 2px 28px rgba(0,0,0,0.75)',
+            lineHeight: 1.1,
+            marginBottom: '0.45rem',
+            letterSpacing: '0.01em',
           }}
         >
           {SCENES[current].title}
         </h2>
         <p
           style={{
-            fontFamily: "'Lato', sans-serif",
-            fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
-            color: 'rgba(255,255,255,0.82)',
-            fontWeight: 300,
-            textShadow: '0 1px 12px rgba(0,0,0,0.5)',
-            letterSpacing: '0.01em',
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: 'clamp(0.88rem, 1.6vw, 1.1rem)',
+            color: 'rgba(255,255,255,0.88)',
+            fontWeight: 400,
+            textShadow: '0 1px 12px rgba(0,0,0,0.6)',
+            letterSpacing: '0.02em',
           }}
         >
           {SCENES[current].subtitle}
         </p>
       </div>
 
-      {/* Scene dots (minimal, no labels/progress/pause) */}
+      {/* Dot indicators */}
       <div
-        className="absolute z-30 flex items-center gap-3"
+        className="absolute z-30 flex items-center gap-2"
         style={{
           bottom: '5%',
           left: '50%',
@@ -196,29 +215,26 @@ export default function CinematicHero() {
           <div
             key={idx}
             style={{
-              width: idx === current ? '32px' : '8px',
-              height: '4px',
+              width: idx === current ? '28px' : '7px',
+              height: '5px',
               borderRadius: '9999px',
-              background:
-                idx === current
-                  ? '#6AAF2C'
-                  : 'rgba(255,255,255,0.35)',
-              transition: 'all 0.5s ease',
+              background: idx === current ? '#6AB04C' : 'rgba(255,255,255,0.38)',
+              transition: 'all 0.45s ease',
             }}
           />
         ))}
       </div>
 
-      {/* Top-left branding with user logo */}
-      <div className="absolute top-6 left-6 sm:left-12 z-30 flex items-center gap-3">
+      {/* Top-left branding */}
+      <div className="absolute top-5 left-5 sm:left-10 z-30 flex items-center gap-3">
         <div
           style={{
-            width: '52px',
-            height: '52px',
-            background: 'rgba(255,255,255,0.18)',
+            width: '50px',
+            height: '50px',
+            background: 'rgba(255,255,255,0.14)',
             backdropFilter: 'blur(10px)',
-            borderRadius: '14px',
-            border: '1px solid rgba(255,255,255,0.28)',
+            borderRadius: '13px',
+            border: '1px solid rgba(255,255,255,0.22)',
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
@@ -227,30 +243,30 @@ export default function CinematicHero() {
         >
           <img
             src="/logo.jpeg"
-            alt="Abhishag"
+            alt="Abishag"
             style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }}
           />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <span
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: '1.25rem',
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: '1.3rem',
               fontWeight: 700,
               color: '#ffffff',
-              textShadow: '0 1px 10px rgba(0,0,0,0.5)',
+              textShadow: '0 1px 10px rgba(0,0,0,0.55)',
               lineHeight: 1,
             }}
           >
-            Abhishag
+            Abishag
           </span>
           <span
             style={{
-              fontFamily: "'Lato', sans-serif",
-              fontSize: '0.6rem',
-              fontWeight: 600,
-              color: 'rgba(255,255,255,0.65)',
-              letterSpacing: '0.22em',
+              fontFamily: "'Nunito', sans-serif",
+              fontSize: '0.56rem',
+              fontWeight: 700,
+              color: 'rgba(255,255,255,0.72)',
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
               marginTop: '3px',
             }}

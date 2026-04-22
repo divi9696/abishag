@@ -1,10 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function Navigation() {
   return (
-    <nav style={{ background: '#ffffff', borderBottom: '2px solid #e8e4dc', boxShadow: '0 2px 16px rgba(74,33,17,0.07)' }}>
+    <nav style={{ background: '#ffffff', borderBottom: '2px solid #DDD5CC', boxShadow: '0 2px 18px rgba(61,26,10,0.08)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center" style={{ height: '72px' }}>
+        <div className="flex justify-between items-center" style={{ height: '74px' }}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group py-2">
             <div
@@ -13,29 +15,29 @@ export default function Navigation() {
             >
               <img
                 src="/logo.jpeg"
-                alt="Abhishag Logo"
+                alt="Abishag Logo"
                 style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }}
               />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
               <span
                 style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: '1.5rem',
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '1.55rem',
                   fontWeight: 700,
-                  color: '#4A2111',
+                  color: '#3D1A0A',
                   lineHeight: 1,
                   letterSpacing: '-0.01em',
                 }}
               >
-                Abhishag
+                Abishag
               </span>
               <span
                 style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '0.6rem',
-                  fontWeight: 600,
-                  color: '#5A9E22',
+                  fontFamily: "'Nunito', sans-serif",
+                  fontSize: '0.58rem',
+                  fontWeight: 700,
+                  color: '#6AB04C',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   marginTop: '2px',
@@ -57,22 +59,22 @@ export default function Navigation() {
                 key={href}
                 href={href}
                 style={{
-                  fontFamily: "'Lato', sans-serif",
+                  fontFamily: "'Nunito', sans-serif",
                   fontWeight: 600,
                   fontSize: '0.95rem',
-                  color: '#4a4a6a',
-                  letterSpacing: '0.03em',
+                  color: '#5C3D2A',
+                  letterSpacing: '0.02em',
                   textDecoration: 'none',
                   padding: '6px 0',
                   borderBottom: '2px solid transparent',
                   transition: 'color 0.2s, border-color 0.2s',
                 }}
                 onMouseEnter={e => {
-                  (e.target as HTMLElement).style.color = '#4A2111';
-                  (e.target as HTMLElement).style.borderBottomColor = '#5A9E22';
+                  (e.target as HTMLElement).style.color = '#3D1A0A';
+                  (e.target as HTMLElement).style.borderBottomColor = '#6AB04C';
                 }}
                 onMouseLeave={e => {
-                  (e.target as HTMLElement).style.color = '#4a4a6a';
+                  (e.target as HTMLElement).style.color = '#5C3D2A';
                   (e.target as HTMLElement).style.borderBottomColor = 'transparent';
                 }}
               >
@@ -80,25 +82,25 @@ export default function Navigation() {
               </Link>
             ))}
             <a
-              href="/services"
+              href="/about"
               style={{
-                fontFamily: "'Lato', sans-serif",
-                fontWeight: 700,
-                fontSize: '0.88rem',
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 800,
+                fontSize: '0.87rem',
                 color: '#ffffff',
-                background: '#5A9E22',
+                background: '#6AB04C',
                 letterSpacing: '0.04em',
                 textDecoration: 'none',
-                padding: '8px 20px',
+                padding: '9px 22px',
                 borderRadius: '8px',
                 transition: 'background 0.2s, transform 0.2s',
               }}
               onMouseEnter={e => {
-                (e.target as HTMLElement).style.background = '#4A2111';
+                (e.target as HTMLElement).style.background = '#3D1A0A';
                 (e.target as HTMLElement).style.transform = 'scale(1.05)';
               }}
               onMouseLeave={e => {
-                (e.target as HTMLElement).style.background = '#5A9E22';
+                (e.target as HTMLElement).style.background = '#6AB04C';
                 (e.target as HTMLElement).style.transform = 'scale(1)';
               }}
             >
@@ -108,7 +110,7 @@ export default function Navigation() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button style={{ color: '#4A2111' }}>
+            <button style={{ color: '#3D1A0A' }}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
