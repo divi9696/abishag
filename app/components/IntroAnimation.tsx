@@ -310,32 +310,7 @@ export default function IntroAnimation({ onComplete }: Props) {
           Home Health Services
         </p>
 
-        {/* Gradient divider */}
-        <div
-          className={step >= 5 ? 'intro-line-grow' : ''}
-          style={{
-            height: '1.5px',
-            width: step >= 5 ? undefined : '0px',
-            background: 'linear-gradient(90deg, transparent, #6AB04C 25%, #4ABED6 75%, transparent)',
-            margin: '0 auto 20px',
-          }}
-        />
 
-        {/* "Abundance of Life" */}
-        <p style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: 'clamp(1rem, 2.4vw, 1.3rem)',
-          fontStyle: 'italic',
-          fontWeight: 400,
-          color: 'rgba(255,255,255,0.45)',
-          letterSpacing: '0.16em',
-          margin: 0,
-          opacity: step >= 6 ? 1 : 0,
-          transform: step >= 6 ? 'translateY(0)' : 'translateY(12px)',
-          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
-        }}>
-          Abundance of Life
-        </p>
 
         {/* Brand-color glowing dots */}
         <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>

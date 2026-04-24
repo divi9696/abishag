@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p style={{ fontFamily: "'Nunito', sans-serif", color: 'rgba(237,232,226,0.6)', fontSize: '0.88rem', lineHeight: 1.75 }}>
-              Abundance of Life — Compassionate home health services for your loved ones.
+              Compassionate home health services for your loved ones.
             </p>
           </div>
 

@@ -105,12 +105,9 @@ export default function About() {
               transition: 'opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s',
             }}
           >
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '16px' }}>Our Tagline</h3>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2.1rem', fontWeight: 700, color: '#6AB04C', fontStyle: 'italic', marginBottom: '18px', lineHeight: 1.25 }}>
-              &quot;Abundance of Life&quot;
-            </p>
+            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '16px' }}>Our Commitment</h3>
             <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.95rem', color: '#5C3D2A', lineHeight: 1.85 }}>
-              This reflects our core belief that every day is an opportunity to help our seniors experience joy, wellness, and meaningful connections with their community.
+              We believe that every day is an opportunity to help our seniors experience joy, wellness, and meaningful connections with their community through dedicated, professional support.
             </p>
           </div>
         </div>

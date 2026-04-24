@@ -120,19 +120,7 @@ export default function Home() {
             transition: 'opacity 0.9s ease, transform 0.9s ease',
           }}
         >
-          <p
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 700,
-              fontSize: '0.72rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: '#6AB04C',
-              marginBottom: '14px',
-            }}
-          >
-            Abundance of Life
-          </p>
+
           <h1
             style={{
               fontFamily: "'Cormorant Garamond', serif",

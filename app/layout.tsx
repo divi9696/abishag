@@ -6,7 +6,7 @@ import ChatAssistant from "./components/ChatAssistant";
 
 export const metadata: Metadata = {
   title: "Abhishag - Home Health Services",
-  description: "Abhishag provides compassionate home health services and daycare for elderly individuals - Abundance of Life",
+  description: "Abhishag provides compassionate home health services and daycare for elderly individuals.",
 };
 
 export default function RootLayout({
