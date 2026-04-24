@@ -184,7 +184,7 @@ export default function Home() {
           {/* Left Column: Image */}
           <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 8px 30px rgba(61,26,10,0.12)', height: '100%' }}>
             <img 
-              src="/images/Abishag_img/1. Caregiver Services.png" 
+              src="/images/welcome_caregiver_new.png" 
               alt="Compassionate elderly care" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '400px', display: 'block' }} 
             />
