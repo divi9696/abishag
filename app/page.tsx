@@ -610,30 +610,6 @@ export default function Home() {
                 </p>
               )}
             </div>
-            ) : (
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
-                <button
-                  onClick={() => setShowReviewForm(true)}
-                  style={{
-                    fontFamily: "'Nunito', sans-serif",
-                    fontWeight: 800,
-                    fontSize: '0.93rem',
-                    color: '#ffffff',
-                    background: '#6AB04C',
-                    padding: '12px 28px',
-                    borderRadius: '10px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'background 0.25s, transform 0.2s',
-                    letterSpacing: '0.04em',
-                    boxShadow: '0 4px 18px rgba(106,176,76,0.35)',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#3D7A28')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#6AB04C')}
-                >
-                  + Add Review
-                </button>
-              </div>
             )}
 
             {/* ── Submitted reviews ── */}
@@ -676,6 +652,33 @@ export default function Home() {
                 </div>
               ))}
             </div>
+
+            {/* ── Add Review Button (Bottom) ── */}
+            {!showReviewForm && (
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+                <button
+                  onClick={() => setShowReviewForm(true)}
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontWeight: 800,
+                    fontSize: '0.93rem',
+                    color: '#ffffff',
+                    background: '#6AB04C',
+                    padding: '13px 32px',
+                    borderRadius: '10px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background 0.25s, transform 0.2s',
+                    letterSpacing: '0.04em',
+                    boxShadow: '0 4px 18px rgba(106,176,76,0.35)',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#3D7A28')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = '#6AB04C')}
+                >
+                  + Add Review
+                </button>
+              </div>
+            )}
 
           </div>
         </div>
