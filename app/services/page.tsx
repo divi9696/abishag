@@ -42,22 +42,7 @@ export default function Services() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <p
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 700,
-              fontSize: '0.7rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: '#6AB04C',
-              marginBottom: '12px',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(12px)',
-              transition: 'opacity 0.8s ease, transform 0.8s ease',
-            }}
-          >
-            What We Offer
-          </p>
+
           <h1
             style={{
               fontFamily: "'Cormorant Garamond', serif",

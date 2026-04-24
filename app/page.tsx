@@ -289,19 +289,7 @@ export default function Home() {
       <section className="py-16 md:py-20" style={{ background: '#F4F1ED' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 700,
-                fontSize: '0.7rem',
-                letterSpacing: '0.28em',
-                textTransform: 'uppercase',
-                color: '#6AB04C',
-                marginBottom: '12px',
-              }}
-            >
-              What We Offer
-            </p>
+
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
@@ -426,19 +414,7 @@ export default function Home() {
       <section className="py-16 md:py-24" style={{ background: '#F4F1ED' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 700,
-                fontSize: '0.7rem',
-                letterSpacing: '0.28em',
-                textTransform: 'uppercase',
-                color: '#4ABED6',
-                marginBottom: '12px',
-              }}
-            >
-              Trusted by Families Across Chennai
-            </p>
+
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
@@ -507,9 +483,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="text-center" style={{ marginBottom: '60px' }}>
-            <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#6AB04C', marginBottom: '12px' }}>
-              What Families Say
-            </p>
+
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>
               Reviews &amp; Testimonials
             </h2>
