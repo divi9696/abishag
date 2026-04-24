@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import CinematicHero from './components/CinematicHero';
 import IntroAnimation from './components/IntroAnimation';
+import { getReviews, addReview, type Review } from './actions';
 
 export default function Home() {
   // ── Intro animation state ──
@@ -11,27 +12,50 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
   // ── Review state ──
-  type Review = { name: string; rating: number; text: string; date: string };
-  const [reviews, setReviews] = useState<Review[]>([
-    { name: 'Priya Ramachandran', rating: 5, text: 'Abishag transformed my mother\'s daily life. The caregiver assigned was patient, professional, and treated her like family. We are truly grateful.', date: 'April 2026' },
-    { name: 'Karthik Sundaram', rating: 5, text: 'The nursing team is exceptional. Their attention to detail with medication management gave our entire family peace of mind. Highly recommended.', date: 'March 2026' },
-  ]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [formName, setFormName] = useState('');
   const [formRating, setFormRating] = useState(0);
   const [formText, setFormText] = useState('');
   const [hoveredStar, setHoveredStar] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleReviewSubmit = () => {
-    if (!formName.trim() || formRating === 0 || !formText.trim()) return;
+  useEffect(() => {
+    // Fetch reviews on mount
+    getReviews().then((data) => {
+      if (data && data.length > 0) {
+        setReviews(data);
+      } else {
+        // Fallback data if DB isn't configured yet
+        setReviews([
+          { name: 'Priya Ramachandran', rating: 5, text: 'Abishag transformed my mother\'s daily life. The caregiver assigned was patient, professional, and treated her like family. We are truly grateful.', date: 'April 2026' },
+          { name: 'Karthik Sundaram', rating: 5, text: 'The nursing team is exceptional. Their attention to detail with medication management gave our entire family peace of mind. Highly recommended.', date: 'March 2026' },
+        ]);
+      }
+    });
+  }, []);
+
+  const handleReviewSubmit = async () => {
+    if (!formName.trim() || formRating === 0 || !formText.trim() || isSubmitting) return;
+    
+    setIsSubmitting(true);
     const today = new Date();
     const dateStr = today.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
-    setReviews((prev) => [{ name: formName.trim(), rating: formRating, text: formText.trim(), date: dateStr }, ...prev]);
+    
+    const newReview = { name: formName.trim(), rating: formRating, text: formText.trim(), date: dateStr };
+    
+    // Optimistic update
+    setReviews((prev) => [newReview, ...prev]);
+    
+    // Send to database
+    await addReview(newReview);
+    
     setFormName('');
     setFormRating(0);
     setFormText('');
     setHoveredStar(0);
     setSubmitted(true);
+    setIsSubmitting(false);
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -520,26 +544,26 @@ export default function Home() {
               {/* Submit */}
               <button
                 onClick={handleReviewSubmit}
-                disabled={!formName.trim() || formRating === 0 || !formText.trim()}
+                disabled={!formName.trim() || formRating === 0 || !formText.trim() || isSubmitting}
                 style={{
                   fontFamily: "'Nunito', sans-serif",
                   fontWeight: 800,
                   fontSize: '0.93rem',
                   color: '#ffffff',
-                  background: (!formName.trim() || formRating === 0 || !formText.trim()) ? '#C5B9B0' : '#6AB04C',
+                  background: (!formName.trim() || formRating === 0 || !formText.trim() || isSubmitting) ? '#C5B9B0' : '#6AB04C',
                   padding: '13px 36px',
                   borderRadius: '10px',
                   border: 'none',
-                  cursor: (!formName.trim() || formRating === 0 || !formText.trim()) ? 'not-allowed' : 'pointer',
+                  cursor: (!formName.trim() || formRating === 0 || !formText.trim() || isSubmitting) ? 'not-allowed' : 'pointer',
                   transition: 'background 0.25s, transform 0.2s',
                   letterSpacing: '0.04em',
                   width: '100%',
-                  boxShadow: (!formName.trim() || formRating === 0 || !formText.trim()) ? 'none' : '0 4px 18px rgba(106,176,76,0.35)',
+                  boxShadow: (!formName.trim() || formRating === 0 || !formText.trim() || isSubmitting) ? 'none' : '0 4px 18px rgba(106,176,76,0.35)',
                 }}
-                onMouseEnter={(e) => { if (formName.trim() && formRating > 0 && formText.trim()) (e.currentTarget as HTMLElement).style.background = '#3D7A28'; }}
-                onMouseLeave={(e) => { if (formName.trim() && formRating > 0 && formText.trim()) (e.currentTarget as HTMLElement).style.background = '#6AB04C'; }}
+                onMouseEnter={(e) => { if (formName.trim() && formRating > 0 && formText.trim() && !isSubmitting) (e.currentTarget as HTMLElement).style.background = '#3D7A28'; }}
+                onMouseLeave={(e) => { if (formName.trim() && formRating > 0 && formText.trim() && !isSubmitting) (e.currentTarget as HTMLElement).style.background = '#6AB04C'; }}
               >
-                {submitted ? 'Review Submitted!' : 'Submit Review'}
+                {isSubmitting ? 'Submitting...' : submitted ? 'Review Submitted!' : 'Submit Review'}
               </button>
               {submitted && (
                 <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.82rem', color: '#6AB04C', marginTop: '10px', fontWeight: 700 }}>
