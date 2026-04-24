@@ -53,7 +53,13 @@ export async function initDb() {
 }
 
 export async function getReviews() {
-  if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
+  const hasConn = 
+    process.env.POSTGRES_URL || 
+    process.env.DATABASE_URL || 
+    process.env.POSTGERS_POSTGRES_URL || 
+    process.env.POSTGERS_DATABASE_URL;
+
+  if (!hasConn) {
     console.error('No database connection string found in environment variables');
     return { error: 'no_connection_string' };
   }
