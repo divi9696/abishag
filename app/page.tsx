@@ -51,28 +51,34 @@ export default function Home() {
     if (!formName.trim() || formRating === 0 || !formText.trim() || isSubmitting) return;
     
     setIsSubmitting(true);
-    const today = new Date();
-    const dateStr = today.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
-    
-    const newReview = { name: formName.trim(), rating: formRating, text: formText.trim(), date: dateStr };
-    
-    // Optimistic update
-    setReviews((prev) => [newReview, ...prev]);
-    
-    // Send to database
-    const result = await addReview(newReview);
-    if (!result.success) {
-      console.error('Failed to save review:', result.error);
-      alert('Note: The review was not saved to the database. ' + result.error);
+    try {
+      const today = new Date();
+      const dateStr = today.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+      
+      const newReview = { name: formName.trim(), rating: formRating, text: formText.trim(), date: dateStr };
+      
+      // Optimistic update
+      setReviews((prev) => [newReview, ...prev]);
+      
+      // Send to database
+      const result = await addReview(newReview);
+      if (!result.success) {
+        console.error('Failed to save review:', result.error);
+        alert('Note: The review was not saved to the database. ' + result.error);
+      }
+      
+      setFormName('');
+      setFormRating(0);
+      setFormText('');
+      setHoveredStar(0);
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    setFormName('');
-    setFormRating(0);
-    setFormText('');
-    setHoveredStar(0);
-    setSubmitted(true);
-    setIsSubmitting(false);
-    setTimeout(() => setSubmitted(false), 3000);
   };
 
   useEffect(() => {
