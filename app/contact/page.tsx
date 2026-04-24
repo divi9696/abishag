@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { servicesData } from '../data/services';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -158,10 +158,9 @@ _Please reply to this message to start the conversation._`;
                     onBlur={(e) => (e.target.style.borderColor = '#DDD5CC')}
                   >
                     <option value="" disabled hidden>Choose Services</option>
-                    <option value="Skilled Nursing">Skilled Nursing</option>
-                    <option value="Therapy Services">Therapy Services</option>
-                    <option value="Personal Care">Personal Care</option>
-                    <option value="Companionship">Companionship</option>
+                    {servicesData.map((service) => (
+                      <option key={service.id} value={service.title}>{service.title}</option>
+                    ))}
                   </select>
                   <div style={{ position: 'absolute', top: '15px', right: '16px', color: '#A09287', pointerEvents: 'none' }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
