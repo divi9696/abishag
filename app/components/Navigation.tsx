@@ -1,30 +1,38 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About Us' },
+];
 
 export default function Navigation() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav
       style={{
         background: '#ffffff',
         borderBottom: '1.5px solid #DDD5CC',
         boxShadow: '0 2px 14px rgba(61,26,10,0.08)',
-        /* ── Fix 2: sticky so nav stays visible on scroll ── */
         position: 'sticky',
         top: 0,
         zIndex: 1000,
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ── Fix 2: reduced height from 74px → 58px ── */}
+        {/* Top bar */}
         <div className="flex justify-between items-center" style={{ height: '58px' }}>
-          {/* Logo — using new logo.png */}
-          <Link href="/" className="flex items-center gap-2 group py-1">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group py-1" onClick={() => setMenuOpen(false)}>
             <div
               className="transition-transform duration-300 group-hover:scale-105"
-              style={{ height: '46px', width: '46px', flexShrink: 0 }}
+              style={{ height: '42px', width: '42px', flexShrink: 0 }}
             >
-              {/* ── Fix 3: updated to logo.png ── */}
               <img
                 src="/logo-transparent.png"
                 alt="Abishag Logo"
@@ -35,7 +43,7 @@ export default function Navigation() {
               <span
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '1.4rem',
+                  fontSize: '1.35rem',
                   fontWeight: 700,
                   color: '#3D1A0A',
                   lineHeight: 1,
@@ -47,10 +55,10 @@ export default function Navigation() {
               <span
                 style={{
                   fontFamily: "'Nunito', sans-serif",
-                  fontSize: '0.54rem',
+                  fontSize: '0.5rem',
                   fontWeight: 700,
                   color: '#6AB04C',
-                  letterSpacing: '0.2em',
+                  letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   marginTop: '2px',
                 }}
@@ -60,14 +68,9 @@ export default function Navigation() {
             </div>
           </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex gap-8 items-center">
-            {[
-              { href: '/', label: 'Home' },
-              { href: '/services', label: 'Services' },
-              { href: '/blog', label: 'Blog' },
-              { href: '/about', label: 'About Us' },
-            ].map(({ href, label }) => (
+          {/* Desktop nav links */}
+          <div className="hidden md:flex gap-6 lg:gap-8 items-center">
+            {navLinks.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
@@ -81,6 +84,7 @@ export default function Navigation() {
                   padding: '5px 0',
                   borderBottom: '2px solid transparent',
                   transition: 'color 0.2s, border-color 0.2s',
+                  whiteSpace: 'nowrap',
                 }}
                 onMouseEnter={e => {
                   (e.target as HTMLElement).style.color = '#3D1A0A';
@@ -104,9 +108,10 @@ export default function Navigation() {
                 background: '#6AB04C',
                 letterSpacing: '0.04em',
                 textDecoration: 'none',
-                padding: '8px 20px',
+                padding: '8px 18px',
                 borderRadius: '8px',
                 transition: 'background 0.2s, transform 0.2s',
+                whiteSpace: 'nowrap',
               }}
               onMouseEnter={e => {
                 (e.target as HTMLElement).style.background = '#3D1A0A';
@@ -121,16 +126,93 @@ export default function Navigation() {
             </a>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button style={{ color: '#3D1A0A' }}>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden"
+            onClick={() => setMenuOpen(prev => !prev)}
+            aria-label="Toggle menu"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '6px',
+              color: '#3D1A0A',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {menuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M18 6L6 18M6 6l12 12" />
               </svg>
-            </button>
-          </div>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile dropdown menu */}
+      {menuOpen && (
+        <div
+          className="md:hidden"
+          style={{
+            background: '#ffffff',
+            borderTop: '1px solid #EAE5DF',
+            padding: '16px 20px 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '4px',
+            boxShadow: '0 8px 24px rgba(61,26,10,0.12)',
+          }}
+        >
+          {navLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 600,
+                fontSize: '1rem',
+                color: '#3D1A0A',
+                textDecoration: 'none',
+                padding: '12px 16px',
+                borderRadius: '10px',
+                transition: 'background 0.2s',
+                display: 'block',
+              }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#F4F1ED')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'transparent')}
+            >
+              {label}
+            </Link>
+          ))}
+          <a
+            href="/about"
+            onClick={() => setMenuOpen(false)}
+            style={{
+              fontFamily: "'Nunito', sans-serif",
+              fontWeight: 800,
+              fontSize: '0.95rem',
+              color: '#ffffff',
+              background: '#6AB04C',
+              textDecoration: 'none',
+              padding: '13px 16px',
+              borderRadius: '10px',
+              marginTop: '8px',
+              textAlign: 'center',
+              display: 'block',
+              letterSpacing: '0.04em',
+            }}
+          >
+            Contact Us
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

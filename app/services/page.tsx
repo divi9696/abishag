@@ -152,9 +152,9 @@ export default function Services() {
 
       {/* ── Page Header ── */}
       <section
+        className="py-16 md:py-20"
         style={{
           background: 'linear-gradient(135deg, #3D1A0A 0%, #6B3020 55%, #4A8A30 100%)',
-          padding: '76px 0 60px',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -212,16 +212,16 @@ export default function Services() {
       </section>
 
       {/* ── Services Grid ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: '76px 16px' }}>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={service.id}
               onClick={() => setExpandedCard(expandedCard === service.id ? null : service.id)}
+              className="p-6 md:p-9"
               style={{
                 background: '#ffffff',
                 borderRadius: '18px',
-                padding: '38px 28px',
                 borderTop: '5px solid #6AB04C',
                 boxShadow: expandedCard === service.id
                   ? '0 22px 52px rgba(61,26,10,0.15)'

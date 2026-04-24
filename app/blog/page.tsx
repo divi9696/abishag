@@ -104,9 +104,9 @@ export default function Blog() {
 
       {/* ── Page Header ── */}
       <section
+        className="py-16 md:py-20"
         style={{
           background: 'linear-gradient(135deg, #3D1A0A 0%, #6B3020 55%, #4A8A30 100%)',
-          padding: '76px 0 60px',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -165,7 +165,7 @@ export default function Blog() {
       </section>
 
       {/* ── Category Filter ── */}
-      <section style={{ background: '#ffffff', padding: '28px 0', borderBottom: '1px solid #DDD5CC' }}>
+      <section className="py-6 md:py-8" style={{ background: '#ffffff', borderBottom: '1px solid #DDD5CC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((cat) => (
@@ -208,7 +208,7 @@ export default function Blog() {
       </section>
 
       {/* ── Blog Grid ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: '72px 16px' }}>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((post, index) => (
             <article
@@ -240,7 +240,7 @@ export default function Blog() {
               <div style={{ height: '5px', background: post.color, flexShrink: 0 }} />
 
               {/* Card Body */}
-              <div style={{ padding: '30px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+              <div className="p-6 md:p-8" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
 
                 {/* Category + Tag */}
                 <div className="flex items-center gap-3" style={{ marginBottom: '16px' }}>
@@ -357,9 +357,9 @@ export default function Blog() {
 
       {/* ── Newsletter CTA ── */}
       <section
+        className="py-16 md:py-24"
         style={{
           background: 'linear-gradient(135deg, #3D1A0A 0%, #6B3020 48%, #4A8A30 100%)',
-          padding: '84px 0',
           position: 'relative',
           overflow: 'hidden',
         }}

@@ -111,7 +111,7 @@ export default function Home() {
       <CinematicHero />
 
       {/* ── INTRO STRIP ── */}
-      <section style={{ background: '#ffffff', padding: '80px 0', borderBottom: '1px solid #DDD5CC' }}>
+      <section className="py-16 md:py-20" style={{ background: '#ffffff', borderBottom: '1px solid #DDD5CC' }}>
         <div
           className="max-w-4xl mx-auto px-6 text-center"
           style={{
@@ -216,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* ── SERVICES PREVIEW ── */}
-      <section style={{ background: '#F4F1ED', padding: '80px 0 60px' }}>
+      <section className="py-16 md:py-20" style={{ background: '#F4F1ED' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p
@@ -353,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section style={{ background: '#F4F1ED', padding: '88px 0' }}>
+      <section className="py-16 md:py-24" style={{ background: '#F4F1ED' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p
@@ -387,12 +387,12 @@ export default function Home() {
                 style={{
                   background: '#ffffff',
                   borderRadius: '18px',
-                  padding: '44px 32px',
                   borderLeft: '5px solid #6AB04C',
                   boxShadow: '0 4px 28px rgba(61,26,10,0.07)',
                   cursor: 'pointer',
                   transition: 'transform 0.35s ease, box-shadow 0.35s ease',
                 }}
+                className="p-8 md:p-11"
                 onMouseEnter={e => {
                   const el = e.currentTarget;
                   el.style.transform = 'translateY(-7px)';
@@ -433,7 +433,7 @@ export default function Home() {
       </section>
 
       {/* ── REVIEWS SECTION ── */}
-      <section style={{ background: '#ffffff', padding: '88px 0' }}>
+      <section className="py-16 md:py-24" style={{ background: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="text-center" style={{ marginBottom: '60px' }}>
@@ -448,7 +448,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
             {/* ── Write a review ── */}
-            <div style={{ background: '#F9F7F4', borderRadius: '22px', padding: '40px 36px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF' }}>
+            <div className="p-6 md:p-9" style={{ background: '#F9F7F4', borderRadius: '22px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF' }}>
               <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>
                 Share Your Experience
               </h3>
@@ -542,7 +542,8 @@ export default function Home() {
               {reviews.map((rev, i) => (
                 <div
                   key={i}
-                  style={{ background: '#F9F7F4', borderRadius: '16px', padding: '26px 28px', boxShadow: '0 4px 18px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', animation: i === 0 ? 'fadeInUp 0.5s ease-out both' : 'none' }}
+                  className="p-6 md:p-7"
+                  style={{ background: '#F9F7F4', borderRadius: '16px', boxShadow: '0 4px 18px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', animation: i === 0 ? 'fadeInUp 0.5s ease-out both' : 'none' }}
                 >
                   {/* Stars */}
                   <div style={{ display: 'flex', gap: '3px', marginBottom: '12px' }}>
@@ -578,9 +579,9 @@ export default function Home() {
 
       {/* ── CTA ── */}
       <section
+        className="py-16 md:py-24"
         style={{
           background: 'linear-gradient(135deg, #3D1A0A 0%, #6B3020 48%, #4A8A30 100%)',
-          padding: '96px 0',
           position: 'relative',
           overflow: 'hidden',
         }}

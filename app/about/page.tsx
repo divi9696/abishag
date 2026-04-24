@@ -36,9 +36,9 @@ export default function About() {
 
       {/* ── Page Header ── */}
       <section
+        className="py-16 md:py-20"
         style={{
           background: 'linear-gradient(135deg, #2D2873 0%, #3D1A0A 55%, #6B3020 100%)',
-          padding: '76px 0 60px',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -77,7 +77,7 @@ export default function About() {
       </section>
 
       {/* ── Our Story ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: '84px 16px' }}>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-14">
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>
             Our Story
@@ -95,10 +95,10 @@ export default function About() {
               </p>
             ))}
           </div>
-          <div
+            className="p-8 md:p-12"
             style={{
               background: 'linear-gradient(135deg, #EAF5E0 0%, #F5EDE6 100%)',
-              borderRadius: '20px', padding: '48px 36px',
+              borderRadius: '20px',
               borderLeft: '5px solid #6AB04C',
               boxShadow: '0 8px 36px rgba(61,26,10,0.1)',
               opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(24px)',
@@ -114,7 +114,7 @@ export default function About() {
       </section>
 
       {/* ── Mission & Vision ── */}
-      <section style={{ background: '#ffffff', padding: '76px 0' }}>
+      <section className="py-16 md:py-20" style={{ background: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {[
@@ -123,8 +123,9 @@ export default function About() {
             ].map(({ title, text, accent }) => (
               <div
                 key={title}
+                className="p-8 md:p-11"
                 style={{
-                  background: '#F4F1ED', borderRadius: '18px', padding: '44px 34px',
+                  background: '#F4F1ED', borderRadius: '18px',
                   borderLeft: `5px solid ${accent}`,
                   boxShadow: '0 4px 22px rgba(61,26,10,0.07)',
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -141,7 +142,7 @@ export default function About() {
       </section>
 
       {/* ── Core Values ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: '84px 16px' }}>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-14">
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>Our Core Values</h2>
         </div>
@@ -150,9 +151,10 @@ export default function About() {
             <div
               key={value.id}
               onClick={() => setActiveValue(activeValue === value.id ? null : value.id)}
+              className="p-6 md:p-9"
               style={{
                 background: activeValue === value.id ? '#FDF8F2' : '#ffffff',
-                borderRadius: '18px', padding: '38px 24px', textAlign: 'center',
+                borderRadius: '18px', textAlign: 'center',
                 borderTop: `5px solid ${value.color}`,
                 boxShadow: activeValue === value.id ? '0 18px 44px rgba(61,26,10,0.15)' : '0 4px 22px rgba(61,26,10,0.07)',
                 cursor: 'pointer',
@@ -173,7 +175,7 @@ export default function About() {
       </section>
 
       {/* ── Team ── */}
-      <section style={{ background: '#ffffff', padding: '76px 0' }}>
+      <section className="py-16 md:py-20" style={{ background: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>Our Team</h2>
@@ -182,8 +184,9 @@ export default function About() {
             {teamMembers.map((member, index) => (
               <div
                 key={member.id}
+                className="p-8 md:p-11"
                 style={{
-                  background: '#F4F1ED', borderRadius: '18px', padding: '44px 28px',
+                  background: '#F4F1ED', borderRadius: '18px',
                   textAlign: 'center', borderTop: '5px solid #6AB04C',
                   boxShadow: '0 4px 22px rgba(61,26,10,0.07)',
                   animation: isVisible ? `fadeInUp 0.6s ease-out ${index * 0.1}s both` : 'none',
@@ -205,7 +208,7 @@ export default function About() {
       </section>
 
       {/* ── Why Choose Us ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: '84px 16px' }}>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-14">
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>Why Choose Abishag?</h2>
         </div>
@@ -213,8 +216,9 @@ export default function About() {
           {whyUs.map(({ title, desc }, index) => (
             <div
               key={index}
+              className="p-6 md:p-9"
               style={{
-                background: '#ffffff', borderRadius: '14px', padding: '28px 34px',
+                background: '#ffffff', borderRadius: '14px',
                 borderLeft: '5px solid #6AB04C',
                 boxShadow: '0 4px 18px rgba(61,26,10,0.06)',
                 display: 'flex', alignItems: 'flex-start', gap: '20px',
@@ -235,7 +239,7 @@ export default function About() {
       </section>
 
       {/* ── Contact CTA ── */}
-      <section style={{ background: 'linear-gradient(135deg, #3D1A0A 0%, #2D2873 100%)', padding: '84px 0', position: 'relative', overflow: 'hidden' }}>
+      <section className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, #3D1A0A 0%, #2D2873 100%)', position: 'relative', overflow: 'hidden' }}>
         <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.08 }}>
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-white rounded-full filter blur-3xl animate-pulse" />
           <div className="absolute top-0 right-0 w-80 h-80 bg-white rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />

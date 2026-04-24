@@ -209,11 +209,11 @@ export default function ChatAssistant() {
         aria-label="Open care guide chat"
         style={{
           position: 'fixed',
-          bottom: '28px',
-          right: '28px',
+          bottom: '20px',
+          right: '20px',
           zIndex: 9999,
-          width: '60px',
-          height: '60px',
+          width: '56px',
+          height: '56px',
           borderRadius: '50%',
           background: 'linear-gradient(135deg, #6AB04C, #3D7A28)',
           border: 'none',
@@ -226,6 +226,7 @@ export default function ChatAssistant() {
           justifyContent: 'center',
           transition: 'transform 0.2s, box-shadow 0.3s',
           animation: pulse ? 'chatPulse 1.6s ease-in-out infinite' : 'none',
+          flexShrink: 0,
         }}
         onMouseEnter={(e) => {
           (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)';
@@ -252,11 +253,11 @@ export default function ChatAssistant() {
         <div
           style={{
             position: 'fixed',
-            bottom: '100px',
-            right: '28px',
+            bottom: '88px',
+            right: '10px',
             zIndex: 9998,
-            width: '360px',
-            maxHeight: '540px',
+            width: 'min(360px, calc(100vw - 20px))',
+            maxHeight: 'min(540px, calc(100vh - 110px))',
             background: '#ffffff',
             borderRadius: '20px',
             boxShadow: '0 20px 60px rgba(61,26,10,0.22)',
