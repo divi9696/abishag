@@ -3,16 +3,16 @@
 import { useState, useEffect } from 'react';
 
 const teamMembers = [
-  { id: 1, name: "Team Member 1", role: "Senior Caregiver", description: "Dedicated professional with extensive experience in elderly care.", icon: "👩‍⚕️" },
-  { id: 2, name: "Team Member 2", role: "Healthcare Coordinator", description: "Ensures quality healthcare delivery and wellness programs.", icon: "👨‍⚕️" },
-  { id: 3, name: "Team Member 3", role: "Activities Organizer", description: "Creates engaging recreational and therapeutic activities.", icon: "👨‍🎓" },
+  { id: 1, name: "Team Member 1", role: "Senior Caregiver", description: "Dedicated professional with extensive experience in elderly care.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg> },
+  { id: 2, name: "Team Member 2", role: "Healthcare Coordinator", description: "Ensures quality healthcare delivery and wellness programs.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 14h6"/><path d="M12 11v6"/></svg> },
+  { id: 3, name: "Team Member 3", role: "Activities Organizer", description: "Creates engaging recreational and therapeutic activities.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg> },
 ];
 
 const coreValues = [
-  { id: 1, title: "Compassion", icon: "🤝", description: "We care for our residents with empathy and genuine concern for their wellbeing.", color: "#6AB04C" },
-  { id: 2, title: "Excellence", icon: "⭐", description: "We maintain high standards in all aspects of our care delivery.", color: "#4ABED6" },
-  { id: 3, title: "Respect", icon: "🙏", description: "We honor the dignity and autonomy of every individual in our care.", color: "#3D1A0A" },
-  { id: 4, title: "Growth", icon: "🌱", description: "We foster continuous improvement and personal development.", color: "#2D2873" },
+  { id: 1, title: "Compassion", icon: <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6AB04C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/></svg>, description: "We care for our residents with empathy and genuine concern for their wellbeing.", color: "#6AB04C" },
+  { id: 2, title: "Excellence", icon: <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4ABED6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, description: "We maintain high standards in all aspects of our care delivery.", color: "#4ABED6" },
+  { id: 3, title: "Respect", icon: <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3D1A0A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>, description: "We honor the dignity and autonomy of every individual in our care.", color: "#3D1A0A" },
+  { id: 4, title: "Growth", icon: <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2D2873" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>, description: "We foster continuous improvement and personal development.", color: "#2D2873" },
 ];
 
 const whyUs = [
@@ -165,7 +165,7 @@ export default function About() {
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px) scale(1.02)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; }}
             >
-              <div style={{ fontSize: '2.8rem', marginBottom: '14px' }}>{value.icon}</div>
+              <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>{value.icon}</div>
               <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '10px' }}>{value.title}</h3>
               <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.87rem', color: '#5C3D2A', lineHeight: 1.75, opacity: activeValue === value.id ? 1 : 0.75 }}>
                 {value.description}
@@ -197,7 +197,7 @@ export default function About() {
                 onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 22px rgba(61,26,10,0.07)'; }}
               >
                 <div style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #6AB04C, #3D1A0A)', borderRadius: '50%', margin: '0 auto 22px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 22px rgba(106,176,76,0.35)' }}>
-                  <span style={{ fontSize: '2.8rem' }}>{member.icon}</span>
+                  {member.icon}
                 </div>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>{member.name}</h3>
                 <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.8rem', fontWeight: 700, color: '#6AB04C', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '12px' }}>{member.role}</p>
