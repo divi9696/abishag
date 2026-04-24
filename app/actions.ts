@@ -50,6 +50,7 @@ export async function initDb() {
 
 export async function getReviews() {
   try {
+    // Try to fetch reviews
     const { rows } = await sql`
       SELECT id, name, rating, text, date 
       FROM reviews 
@@ -57,22 +58,23 @@ export async function getReviews() {
     `;
     return rows as Review[];
   } catch (error: any) {
-    // If table doesn't exist, try initializing it
-    if (error.message && error.message.includes('relation "reviews" does not exist')) {
-      await initDb();
-      try {
-        const { rows } = await sql`
-          SELECT id, name, rating, text, date 
-          FROM reviews 
-          ORDER BY created_at DESC
-        `;
-        return rows as Review[];
-      } catch (e) {
-        return [];
-      }
+    console.error('Database error, attempting to initialize:', error.message);
+    
+    // Always try to initialize the DB if anything goes wrong (like table missing)
+    await initDb();
+    
+    try {
+      // Try fetching again after initialization
+      const { rows } = await sql`
+        SELECT id, name, rating, text, date 
+        FROM reviews 
+        ORDER BY created_at DESC
+      `;
+      return rows as Review[];
+    } catch (secondError) {
+      console.error('Initialization failed or still no table:', secondError);
+      return [];
     }
-    console.error('Error fetching reviews:', error);
-    return [];
   }
 }
 
