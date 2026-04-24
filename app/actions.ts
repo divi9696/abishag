@@ -3,7 +3,11 @@
 import { createPool } from '@vercel/postgres';
 
 const pool = createPool({
-  connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URL
+  connectionString: 
+    process.env.POSTGRES_URL || 
+    process.env.DATABASE_URL || 
+    process.env.POSTGERS_POSTGRES_URL || 
+    process.env.POSTGERS_DATABASE_URL
 });
 
 const sql = pool.sql;
