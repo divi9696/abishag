@@ -1,4 +1,5 @@
 'use server';
+// Trigger redeploy to pick up new Vercel Postgres environment variables
 
 import { sql } from '@vercel/postgres';
 
