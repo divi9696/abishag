@@ -75,38 +75,79 @@ export default function About() {
 
       {/* ── Our Story ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center mb-14">
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>
-            Our Story
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-24px)', transition: 'opacity 0.9s ease, transform 0.9s ease' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* Left Side: Image */}
+          <div style={{
+            position: 'relative',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateX(0)' : 'translateX(-30px)',
+            transition: 'opacity 1s ease, transform 1s ease'
+          }}>
+            <div style={{
+              position: 'relative',
+              borderRadius: '24px',
+              overflow: 'hidden',
+              boxShadow: '0 20px 50px rgba(61,26,10,0.15)',
+              border: '1px solid rgba(106,176,76,0.1)'
+            }}>
+              <img
+                src="/images/elderly-care-about.png"
+                alt="Compassionate elderly care"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  transform: 'scale(1.02)',
+                  transition: 'transform 0.5s ease'
+                }}
+              />
+            </div>
+            {/* Decorative element */}
+            <div style={{
+              position: 'absolute',
+              top: '-15px',
+              left: '-15px',
+              width: '100px',
+              height: '100px',
+              borderLeft: '5px solid #6AB04C',
+              borderTop: '5px solid #6AB04C',
+              borderRadius: '15px 0 0 0',
+              zIndex: -1
+            }} />
+          </div>
+
+          {/* Right Side: Text */}
+          <div style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateX(0)' : 'translateX(30px)',
+            transition: 'opacity 1s ease 0.2s, transform 1s ease 0.2s'
+          }}>
+            <h2 style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 700,
+              color: '#3D1A0A',
+              marginBottom: '24px',
+              lineHeight: 1.2
+            }}>
+              Our Story
+            </h2>
             {[
               "Abishag was founded with a simple yet powerful mission: to provide compassionate, professional care for elderly individuals while preserving their dignity and independence.",
               "We believe that aging is a natural part of life, and every senior deserves to live with respect, comfort, and access to quality healthcare services.",
               "Our team works tirelessly to create an environment where our residents can thrive, maintain meaningful relationships, and enjoy their daily lives to the fullest.",
             ].map((text, i) => (
-              <p key={i} style={{ fontFamily: "'Nunito', sans-serif", fontSize: '1rem', color: '#5C3D2A', lineHeight: 1.9, marginBottom: '18px', fontWeight: 400 }}>
+              <p key={i} style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontSize: '1.05rem',
+                color: '#5C3D2A',
+                lineHeight: 1.85,
+                marginBottom: '20px',
+                fontWeight: 400
+              }}>
                 {text}
               </p>
             ))}
-          </div>
-          <div
-            className="p-8 md:p-12"
-            style={{
-              background: 'linear-gradient(135deg, #EAF5E0 0%, #F5EDE6 100%)',
-              borderRadius: '20px',
-              borderLeft: '5px solid #6AB04C',
-              boxShadow: '0 8px 36px rgba(61,26,10,0.1)',
-              opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(24px)',
-              transition: 'opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s',
-            }}
-          >
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '16px' }}>Our Commitment</h3>
-            <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.95rem', color: '#5C3D2A', lineHeight: 1.85 }}>
-              We believe that every day is an opportunity to help our seniors experience joy, wellness, and meaningful connections with their community through dedicated, professional support.
-            </p>
           </div>
         </div>
       </section>
