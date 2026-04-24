@@ -26,15 +26,17 @@ export default function Contact() {
 
     // Format the message for WhatsApp
     const whatsappNumber = "9345989699"; // Replace with actual number without +
-    const text = `*New Inquiry via Website*
+    const text = `✨ *New Inquiry from Abishag Website* ✨
     
-*Name:* ${formData.name}
-*Email:* ${formData.email || 'N/A'}
-*Phone:* ${formData.phone}
-*Service:* ${formData.service || 'Not specified'}
+👤 *Name:* ${formData.name}
+📞 *Phone:* ${formData.phone}
+✉️ *Email:* ${formData.email || 'Not provided'}
+🏥 *Service Requested:* ${formData.service || 'General Inquiry'}
 
-*Message:*
-${formData.message}`;
+💬 *Message:*
+"${formData.message}"
+
+_Please reply to this message to start the conversation._`;
 
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
