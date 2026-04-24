@@ -1,7 +1,12 @@
 'use server';
-// Trigger redeploy to pick up new Vercel Postgres environment variables
+// Support both POSTGRES_URL and DATABASE_URL for maximum compatibility
+import { createPool } from '@vercel/postgres';
 
-import { sql } from '@vercel/postgres';
+const pool = createPool({
+  connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URL
+});
+
+const sql = pool.sql;
 
 export type Review = {
   id?: number;
