@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import CinematicHero from './components/CinematicHero';
 import IntroAnimation from './components/IntroAnimation';
 import { getReviews, addReview, type Review } from './actions';
+import { UserCheck, ClipboardCheck, ShieldCheck, HeartHandshake } from 'lucide-react';
 
 export default function Home() {
   // ── Intro animation state ──
@@ -100,19 +101,11 @@ export default function Home() {
     sessionStorage.setItem('hasSeenIntro', 'true');
   };
 
-  const features = [
-    {
-      title: 'Professional Care',
-      desc: 'Our trained and experienced staff provide the highest quality care and attention to every individual.',
-    },
-    {
-      title: 'Safe Environment',
-      desc: 'A secure and comfortable facility designed specifically for the needs of our elderly residents.',
-    },
-    {
-      title: 'Holistic Wellness',
-      desc: 'We focus on physical health, mental wellbeing, and social engagement for a better quality of life.',
-    },
+  const whyUs = [
+    { title: "Professional & Trained Staff", desc: "All team members are trained, certified, and dedicated to providing exceptional care.", icon: <UserCheck size={28} color="#6AB04C" /> },
+    { title: "Personalized Care Plans", desc: "We develop individualized care plans tailored to each resident's specific needs and preferences.", icon: <ClipboardCheck size={28} color="#6AB04C" /> },
+    { title: "Safe & Comfortable Facility", desc: "Our center is equipped with modern amenities and safety features designed for elderly care.", icon: <ShieldCheck size={28} color="#6AB04C" /> },
+    { title: "Family-Centric Approach", desc: "We maintain open communication with families and involve them in care decisions.", icon: <HeartHandshake size={28} color="#6AB04C" /> },
   ];
 
   const previewServices = [
@@ -426,52 +419,29 @@ export default function Home() {
               Why Choose Abishag?
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map(({ title, desc }) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {whyUs.map(({ title, desc, icon }, index) => (
               <div
-                key={title}
+                key={index}
+                className="p-6 md:p-9"
                 style={{
-                  background: '#ffffff',
-                  borderRadius: '18px',
+                  background: '#ffffff', borderRadius: '14px',
                   borderLeft: '5px solid #6AB04C',
-                  boxShadow: '0 4px 28px rgba(61,26,10,0.07)',
+                  boxShadow: '0 4px 18px rgba(61,26,10,0.06)',
+                  display: 'flex', alignItems: 'flex-start', gap: '20px',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   cursor: 'pointer',
-                  transition: 'transform 0.35s ease, box-shadow 0.35s ease',
                 }}
-                className="p-8 md:p-11"
-                onMouseEnter={e => {
-                  const el = e.currentTarget;
-                  el.style.transform = 'translateY(-7px)';
-                  el.style.boxShadow = '0 18px 44px rgba(61,26,10,0.13)';
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget;
-                  el.style.transform = 'translateY(0)';
-                  el.style.boxShadow = '0 4px 28px rgba(61,26,10,0.07)';
-                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(6px)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(61,26,10,0.12)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(61,26,10,0.06)'; }}
               >
-
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1.45rem',
-                    fontWeight: 700,
-                    color: '#3D1A0A',
-                    marginBottom: '12px',
-                  }}
-                >
-                  {title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Nunito', sans-serif",
-                    color: '#5C3D2A',
-                    fontSize: '0.95rem',
-                    lineHeight: 1.8,
-                  }}
-                >
-                  {desc}
-                </p>
+                <span style={{ flexShrink: 0, marginTop: '2px', background: '#EAF5E0', padding: '12px', borderRadius: '12px' }}>
+                  {icon}
+                </span>
+                <div>
+                  <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>{title}</h3>
+                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.95rem', color: '#5C3D2A', lineHeight: 1.8 }}>{desc}</p>
+                </div>
               </div>
             ))}
           </div>

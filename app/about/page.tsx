@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { UserCheck, ClipboardCheck, ShieldCheck, HeartHandshake } from 'lucide-react';
 
 const teamMembers = [
   { id: 1, name: "Team Member 1", role: "Senior Caregiver", description: "Dedicated professional with extensive experience in elderly care.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg> },
@@ -16,10 +17,10 @@ const coreValues = [
 ];
 
 const whyUs = [
-  { title: "Professional & Trained Staff", desc: "All team members are trained, certified, and dedicated to providing exceptional care." },
-  { title: "Personalized Care Plans", desc: "We develop individualized care plans tailored to each resident's specific needs and preferences." },
-  { title: "Safe & Comfortable Facility", desc: "Our center is equipped with modern amenities and safety features designed for elderly care." },
-  { title: "Family-Centric Approach", desc: "We maintain open communication with families and involve them in care decisions." },
+  { title: "Professional & Trained Staff", desc: "All team members are trained, certified, and dedicated to providing exceptional care.", icon: <UserCheck size={28} color="#6AB04C" /> },
+  { title: "Personalized Care Plans", desc: "We develop individualized care plans tailored to each resident's specific needs and preferences.", icon: <ClipboardCheck size={28} color="#6AB04C" /> },
+  { title: "Safe & Comfortable Facility", desc: "Our center is equipped with modern amenities and safety features designed for elderly care.", icon: <ShieldCheck size={28} color="#6AB04C" /> },
+  { title: "Family-Centric Approach", desc: "We maintain open communication with families and involve them in care decisions.", icon: <HeartHandshake size={28} color="#6AB04C" /> },
 ];
 
 export default function About() {
@@ -214,7 +215,7 @@ export default function About() {
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>Why Choose Abishag?</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {whyUs.map(({ title, desc }, index) => (
+          {whyUs.map(({ title, desc, icon }, index) => (
             <div
               key={index}
               className="p-6 md:p-9"
@@ -229,7 +230,9 @@ export default function About() {
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(6px)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(61,26,10,0.12)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(61,26,10,0.06)'; }}
             >
-              <span style={{ fontSize: '1.5rem', color: '#6AB04C', flexShrink: 0, marginTop: '2px' }}>✓</span>
+              <span style={{ flexShrink: 0, marginTop: '2px', background: '#EAF5E0', padding: '12px', borderRadius: '12px' }}>
+                {icon}
+              </span>
               <div>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.25rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>{title}</h3>
                 <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.93rem', color: '#5C3D2A', lineHeight: 1.8 }}>{desc}</p>
