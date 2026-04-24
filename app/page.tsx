@@ -594,20 +594,11 @@ export default function Home() {
               )}
             </div>
             )}
+          </div>
+        </div>
 
-            {/* ── Submitted reviews ── */}
-            <div 
-              style={{ 
-                width: '100vw', 
-                position: 'relative', 
-                left: '50%', 
-                right: '50%', 
-                marginLeft: '-50vw', 
-                marginRight: '-50vw', 
-                overflow: 'hidden', 
-                padding: '20px 0' 
-              }}
-            >
+        {/* ── Submitted reviews ── */}
+        <div style={{ width: '100%', overflow: 'hidden', padding: '20px 0' }}>
               {reviews.length === 0 && (
                 <div style={{ textAlign: 'center', padding: '40px', background: '#F9F7F4', borderRadius: '16px', border: '1px solid #EAE5DF', maxWidth: '600px', margin: '0 auto' }}>
                   <p style={{ fontFamily: "'Nunito', sans-serif", color: '#8C7B6E', fontSize: '0.95rem' }}>No reviews yet. Be the first to share your experience!</p>
@@ -665,38 +656,37 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
-
-            {/* ── Add Review Button (Bottom) ── */}
-            {!showReviewForm && (
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-                <button
-                  onClick={() => setShowReviewForm(true)}
-                  style={{
-                    fontFamily: "'Nunito', sans-serif",
-                    fontWeight: 800,
-                    fontSize: '0.93rem',
-                    color: '#ffffff',
-                    background: '#6AB04C',
-                    padding: '13px 32px',
-                    borderRadius: '10px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'background 0.25s, transform 0.2s',
-                    letterSpacing: '0.04em',
-                    boxShadow: '0 4px 18px rgba(106,176,76,0.35)',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#3D7A28')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#6AB04C')}
-                >
-                  + Add Review
-                </button>
-              </div>
-            )}
-
-          </div>
+          )}
         </div>
+
+        {/* ── Add Review Button (Bottom) ── */}
+        {!showReviewForm && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+              <button
+                onClick={() => setShowReviewForm(true)}
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 800,
+                  fontSize: '0.93rem',
+                  color: '#ffffff',
+                  background: '#6AB04C',
+                  padding: '13px 32px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'background 0.25s, transform 0.2s',
+                  letterSpacing: '0.04em',
+                  boxShadow: '0 4px 18px rgba(106,176,76,0.35)',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#3D7A28')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#6AB04C')}
+              >
+                + Add Review
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ── CTA ── */}
