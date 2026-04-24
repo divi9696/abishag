@@ -19,6 +19,7 @@ export default function Home() {
   const [hoveredStar, setHoveredStar] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [dbStatus, setDbStatus] = useState<'connected' | 'disconnected' | 'checking'>('checking');
 
   useEffect(() => {
@@ -72,7 +73,10 @@ export default function Home() {
       setFormText('');
       setHoveredStar(0);
       setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
+      setTimeout(() => {
+        setSubmitted(false);
+        setShowReviewForm(false);
+      }, 3000);
     } catch (error) {
       console.error('Submission error:', error);
       alert('An unexpected error occurred. Please try again.');
@@ -507,11 +511,19 @@ export default function Home() {
             )}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className={showReviewForm ? "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" : "flex flex-col items-center max-w-3xl mx-auto"}>
 
             {/* ── Write a review ── */}
-            <div className="p-6 md:p-9" style={{ background: '#F9F7F4', borderRadius: '22px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF' }}>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>
+            {showReviewForm ? (
+              <div className="p-6 md:p-9" style={{ background: '#F9F7F4', borderRadius: '22px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', width: '100%', position: 'relative' }}>
+                <button 
+                  onClick={() => setShowReviewForm(false)}
+                  style={{ position: 'absolute', top: '24px', right: '24px', background: 'none', border: 'none', fontSize: '1.2rem', color: '#8C7B6E', cursor: 'pointer' }}
+                  title="Cancel"
+                >
+                  ✕
+                </button>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>
                 Share Your Experience
               </h3>
               <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.88rem', color: '#8C7B6E', marginBottom: '28px', lineHeight: 1.6 }}>
@@ -598,9 +610,39 @@ export default function Home() {
                 </p>
               )}
             </div>
+            ) : (
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+                <button
+                  onClick={() => setShowReviewForm(true)}
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontWeight: 800,
+                    fontSize: '0.93rem',
+                    color: '#ffffff',
+                    background: '#6AB04C',
+                    padding: '12px 28px',
+                    borderRadius: '10px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background 0.25s, transform 0.2s',
+                    letterSpacing: '0.04em',
+                    boxShadow: '0 4px 18px rgba(106,176,76,0.35)',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#3D7A28')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = '#6AB04C')}
+                >
+                  + Add Review
+                </button>
+              </div>
+            )}
 
             {/* ── Submitted reviews ── */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxHeight: '560px', overflowY: 'auto', paddingRight: '4px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxHeight: '560px', overflowY: 'auto', paddingRight: '4px', width: '100%' }}>
+              {reviews.length === 0 && (
+                <div style={{ textAlign: 'center', padding: '40px', background: '#F9F7F4', borderRadius: '16px', border: '1px solid #EAE5DF' }}>
+                  <p style={{ fontFamily: "'Nunito', sans-serif", color: '#8C7B6E', fontSize: '0.95rem' }}>No reviews yet. Be the first to share your experience!</p>
+                </div>
+              )}
               {reviews.map((rev, i) => (
                 <div
                   key={i}

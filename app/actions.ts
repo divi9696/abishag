@@ -29,7 +29,7 @@ export async function initDb() {
   ensureEnv();
   try {
     await sql`
-      CREATE TABLE IF NOT EXISTS reviews (
+      CREATE TABLE IF NOT EXISTS patient_reviews (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         rating INTEGER NOT NULL,
@@ -38,16 +38,6 @@ export async function initDb() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `;
-    
-    const { rows } = await sql`SELECT COUNT(*) FROM reviews`;
-    if (rows[0].count === '0') {
-      await sql`
-        INSERT INTO reviews (name, rating, text, date)
-        VALUES 
-        ('Priya Ramachandran', 5, 'Abishag transformed my mother''s daily life. The caregiver assigned was patient, professional, and treated her like family. We are truly grateful.', 'April 2026'),
-        ('Karthik Sundaram', 5, 'The nursing team is exceptional. Their attention to detail with medication management gave our entire family peace of mind. Highly recommended.', 'March 2026')
-      `;
-    }
     return { success: true };
   } catch (error: any) {
     console.error('Error initializing database:', error);
@@ -64,7 +54,7 @@ export async function getReviews() {
   try {
     const { rows } = await sql`
       SELECT id, name, rating, text, date 
-      FROM reviews 
+      FROM patient_reviews 
       ORDER BY created_at DESC
     `;
     return rows as Review[];
@@ -74,7 +64,7 @@ export async function getReviews() {
     try {
       const { rows } = await sql`
         SELECT id, name, rating, text, date 
-        FROM reviews 
+        FROM patient_reviews 
         ORDER BY created_at DESC
       `;
       return rows as Review[];
@@ -88,7 +78,7 @@ export async function addReview(review: Review) {
   ensureEnv();
   try {
     await sql`
-      INSERT INTO reviews (name, rating, text, date)
+      INSERT INTO patient_reviews (name, rating, text, date)
       VALUES (${review.name}, ${review.rating}, ${review.text}, ${review.date})
     `;
     return { success: true };
@@ -97,7 +87,7 @@ export async function addReview(review: Review) {
     try {
       await initDb();
       await sql`
-        INSERT INTO reviews (name, rating, text, date)
+        INSERT INTO patient_reviews (name, rating, text, date)
         VALUES (${review.name}, ${review.rating}, ${review.text}, ${review.date})
       `;
       return { success: true };
