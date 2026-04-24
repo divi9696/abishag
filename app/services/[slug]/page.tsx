@@ -2,8 +2,15 @@ import { servicesData } from '@/app/data/services';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export default function ServiceDetail({ params }: { params: { slug: string } }) {
-  const service = servicesData.find(s => s.slug === params.slug);
+export function generateStaticParams() {
+  return servicesData.map((service) => ({
+    slug: service.slug,
+  }));
+}
+
+export default async function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = servicesData.find(s => s.slug === slug);
 
   if (!service) {
     notFound();
