@@ -172,106 +172,115 @@ export default function Home() {
       <CinematicHero />
 
       {/* ── INTRO STRIP ── */}
-      <section className="py-16 md:py-20" style={{ background: '#ffffff', borderBottom: '1px solid #DDD5CC' }}>
+      <section className="py-16 md:py-24" style={{ background: '#ffffff', borderBottom: '1px solid #DDD5CC' }}>
         <div
-          className="max-w-4xl mx-auto px-6 text-center"
+          className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(28px)',
             transition: 'opacity 0.9s ease, transform 0.9s ease',
           }}
         >
+          {/* Left Column: Image */}
+          <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 8px 30px rgba(61,26,10,0.12)', height: '100%' }}>
+            <img 
+              src="/images/Abishag_img/1. Caregiver Services.png" 
+              alt="Compassionate elderly care" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '400px', display: 'block' }} 
+            />
+          </div>
 
-          <h1
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 'clamp(2.2rem, 5vw, 3.6rem)',
-              fontWeight: 700,
-              color: '#3D1A0A',
-              lineHeight: 1.12,
-              marginBottom: '20px',
-            }}
-          >
-            Welcome to{' '}
-            <span style={{ color: '#6AB04C' }}>Abishag</span>
-          </h1>
-          <p
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontSize: '1.05rem',
-              color: '#5C3D2A',
-              lineHeight: 1.85,
-              maxWidth: '640px',
-              margin: '0 auto 40px',
-              fontWeight: 400,
-            }}
-          >
-            Providing compassionate, professional daycare and home health services for elderly individuals.
-            We focus on health, wellness, and creating a nurturing environment for our seniors.
-          </p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <a
-              href="/services"
+          {/* Right Column: Text & Buttons */}
+          <div className="flex flex-col justify-center text-left">
+            <h2
               style={{
-                fontFamily: "'Nunito', sans-serif",
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 'clamp(2.2rem, 5vw, 3.6rem)',
                 fontWeight: 700,
-                fontSize: '0.95rem',
-                color: '#ffffff',
-                background: '#6AB04C',
-                padding: '14px 34px',
-                borderRadius: '10px',
-                textDecoration: 'none',
-                letterSpacing: '0.04em',
-                transition: 'background 0.25s, transform 0.25s, box-shadow 0.25s',
-                display: 'inline-block',
-                boxShadow: '0 4px 20px rgba(106,176,76,0.35)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget;
-                el.style.background = '#3D1A0A';
-                el.style.transform = 'translateY(-2px)';
-                el.style.boxShadow = '0 8px 26px rgba(61,26,10,0.3)';
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget;
-                el.style.background = '#6AB04C';
-                el.style.transform = 'translateY(0)';
-                el.style.boxShadow = '0 4px 20px rgba(106,176,76,0.35)';
-              }}
-            >
-              Our Services
-            </a>
-            <a
-              href="/about"
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 700,
-                fontSize: '0.95rem',
                 color: '#3D1A0A',
-                background: 'transparent',
-                padding: '13px 34px',
-                borderRadius: '10px',
-                textDecoration: 'none',
-                letterSpacing: '0.04em',
-                border: '2px solid #3D1A0A',
-                transition: 'background 0.25s, color 0.25s, transform 0.25s',
-                display: 'inline-block',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget;
-                el.style.background = '#3D1A0A';
-                el.style.color = '#ffffff';
-                el.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget;
-                el.style.background = 'transparent';
-                el.style.color = '#3D1A0A';
-                el.style.transform = 'translateY(0)';
+                lineHeight: 1.12,
+                marginBottom: '24px',
               }}
             >
-              About Us
-            </a>
+              Welcome to{' '}
+              <span style={{ color: '#6AB04C' }}>Abishag</span>
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontSize: '1.05rem',
+                color: '#5C3D2A',
+                lineHeight: 1.85,
+                marginBottom: '36px',
+                fontWeight: 400,
+              }}
+            >
+              At Abishag, we believe that every senior deserves to age with dignity, comfort, and joy. Our dedicated team of healthcare professionals and caregivers provides personalized, compassionate home health services tailored to your loved ones' unique needs. From specialized medical assistance to warm companionship, we are deeply committed to enhancing health, promoting wellness, and creating a truly nurturing environment right where they feel most at home.
+            </p>
+            <div className="flex justify-start gap-4 flex-wrap">
+              <a
+                href="/services"
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  color: '#ffffff',
+                  background: '#6AB04C',
+                  padding: '14px 34px',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  letterSpacing: '0.04em',
+                  transition: 'background 0.25s, transform 0.25s, box-shadow 0.25s',
+                  display: 'inline-block',
+                  boxShadow: '0 4px 20px rgba(106,176,76,0.35)',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget;
+                  el.style.background = '#3D1A0A';
+                  el.style.transform = 'translateY(-2px)';
+                  el.style.boxShadow = '0 8px 26px rgba(61,26,10,0.3)';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget;
+                  el.style.background = '#6AB04C';
+                  el.style.transform = 'translateY(0)';
+                  el.style.boxShadow = '0 4px 20px rgba(106,176,76,0.35)';
+                }}
+              >
+                Our Services
+              </a>
+              <a
+                href="/about"
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  color: '#3D1A0A',
+                  background: 'transparent',
+                  padding: '13px 34px',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  letterSpacing: '0.04em',
+                  border: '2px solid #3D1A0A',
+                  transition: 'background 0.25s, color 0.25s, transform 0.25s',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget;
+                  el.style.background = '#3D1A0A';
+                  el.style.color = '#ffffff';
+                  el.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget;
+                  el.style.background = 'transparent';
+                  el.style.color = '#3D1A0A';
+                  el.style.transform = 'translateY(0)';
+                }}
+              >
+                About Us
+              </a>
+            </div>
           </div>
         </div>
       </section>
