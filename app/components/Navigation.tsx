@@ -99,7 +99,7 @@ export default function Navigation() {
               </Link>
             ))}
             <a
-              href="/about"
+              href="/contact"
               style={{
                 fontFamily: "'Nunito', sans-serif",
                 fontWeight: 800,
@@ -189,7 +189,7 @@ export default function Navigation() {
             </Link>
           ))}
           <a
-            href="/about"
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             style={{
               fontFamily: "'Nunito', sans-serif",
