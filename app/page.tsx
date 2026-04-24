@@ -494,11 +494,11 @@ export default function Home() {
             )}
           </div>
 
-          <div className={showReviewForm ? "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" : "flex flex-col items-center max-w-3xl mx-auto"}>
+          <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
 
             {/* ── Write a review ── */}
             {showReviewForm && (
-              <div className="p-6 md:p-9" style={{ background: '#F9F7F4', borderRadius: '22px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', width: '100%', position: 'relative' }}>
+              <div className="p-6 md:p-9 mb-12 max-w-2xl mx-auto" style={{ background: '#F9F7F4', borderRadius: '22px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', width: '100%', position: 'relative' }}>
                 <button 
                   onClick={() => setShowReviewForm(false)}
                   style={{ position: 'absolute', top: '24px', right: '24px', background: 'none', border: 'none', fontSize: '1.2rem', color: '#8C7B6E', cursor: 'pointer' }}
@@ -596,44 +596,76 @@ export default function Home() {
             )}
 
             {/* ── Submitted reviews ── */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxHeight: '560px', overflowY: 'auto', paddingRight: '4px', width: '100%' }}>
+            <div 
+              style={{ 
+                width: '100vw', 
+                position: 'relative', 
+                left: '50%', 
+                right: '50%', 
+                marginLeft: '-50vw', 
+                marginRight: '-50vw', 
+                overflow: 'hidden', 
+                padding: '20px 0' 
+              }}
+            >
               {reviews.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '40px', background: '#F9F7F4', borderRadius: '16px', border: '1px solid #EAE5DF' }}>
+                <div style={{ textAlign: 'center', padding: '40px', background: '#F9F7F4', borderRadius: '16px', border: '1px solid #EAE5DF', maxWidth: '600px', margin: '0 auto' }}>
                   <p style={{ fontFamily: "'Nunito', sans-serif", color: '#8C7B6E', fontSize: '0.95rem' }}>No reviews yet. Be the first to share your experience!</p>
                 </div>
               )}
-              {reviews.map((rev, i) => (
-                <div
-                  key={i}
-                  className="p-6 md:p-7"
-                  style={{ background: '#F9F7F4', borderRadius: '16px', boxShadow: '0 4px 18px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', animation: i === 0 ? 'fadeInUp 0.5s ease-out both' : 'none' }}
+              {reviews.length > 0 && (
+                <div 
+                  style={{ 
+                    display: 'flex', 
+                    gap: '24px', 
+                    width: 'max-content',
+                    animation: 'marqueeScroll 35s linear infinite',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.animationPlayState = 'paused')}
+                  onMouseLeave={(e) => (e.currentTarget.style.animationPlayState = 'running')}
                 >
-                  {/* Stars */}
-                  <div style={{ display: 'flex', gap: '3px', marginBottom: '12px' }}>
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill={s <= rev.rating ? '#F4A720' : '#DDD5CC'}>
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                    ))}
-                  </div>
-                  {/* Text */}
-                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.92rem', color: '#5C3D2A', lineHeight: 1.75, marginBottom: '18px', fontStyle: 'italic' }}>
-                    &ldquo;{rev.text}&rdquo;
-                  </p>
-                  {/* Author */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, #6AB04C, #3D1A0A)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <span style={{ color: '#fff', fontFamily: "'Nunito', sans-serif", fontWeight: 800, fontSize: '0.95rem' }}>
-                        {rev.name.charAt(0)}
-                      </span>
+                  {[...reviews, ...reviews, ...reviews, ...reviews].map((rev, i) => (
+                    <div
+                      key={i}
+                      className="p-6 md:p-7"
+                      style={{ 
+                        background: '#F9F7F4', 
+                        borderRadius: '16px', 
+                        boxShadow: '0 4px 18px rgba(61,26,10,0.07)', 
+                        border: '1px solid #EAE5DF', 
+                        width: '360px', 
+                        flexShrink: 0,
+                        whiteSpace: 'normal',
+                      }}
+                    >
+                      {/* Stars */}
+                      <div style={{ display: 'flex', gap: '3px', marginBottom: '12px' }}>
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill={s <= rev.rating ? '#F4A720' : '#DDD5CC'}>
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                          </svg>
+                        ))}
+                      </div>
+                      {/* Text */}
+                      <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.92rem', color: '#5C3D2A', lineHeight: 1.75, marginBottom: '18px', fontStyle: 'italic' }}>
+                        &ldquo;{rev.text}&rdquo;
+                      </p>
+                      {/* Author */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, #6AB04C, #3D1A0A)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <span style={{ color: '#fff', fontFamily: "'Nunito', sans-serif", fontWeight: 800, fontSize: '0.95rem' }}>
+                            {rev.name.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <div style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.88rem', color: '#3D1A0A' }}>{rev.name}</div>
+                          <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: '#8C7B6E' }}>{rev.date}</div>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.88rem', color: '#3D1A0A' }}>{rev.name}</div>
-                      <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: '#8C7B6E' }}>{rev.date}</div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
 
             {/* ── Add Review Button (Bottom) ── */}
