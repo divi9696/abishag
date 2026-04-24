@@ -3,11 +3,7 @@
 import { useState, useEffect } from 'react';
 import { UserCheck, ClipboardCheck, ShieldCheck, HeartHandshake } from 'lucide-react';
 
-const teamMembers = [
-  { id: 1, name: "Team Member 1", role: "Senior Caregiver", description: "Dedicated professional with extensive experience in elderly care.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg> },
-  { id: 2, name: "Team Member 2", role: "Healthcare Coordinator", description: "Ensures quality healthcare delivery and wellness programs.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 14h6"/><path d="M12 11v6"/></svg> },
-  { id: 3, name: "Team Member 3", role: "Activities Organizer", description: "Creates engaging recreational and therapeutic activities.", icon: <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg> },
-];
+
 
 const coreValues = [
   { id: 1, title: "Compassion", icon: <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6AB04C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/></svg>, description: "We care for our residents with empathy and genuine concern for their wellbeing.", color: "#6AB04C" },
@@ -176,38 +172,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Team ── */}
-      <section className="py-16 md:py-20" style={{ background: '#ffffff' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>Our Team</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={member.id}
-                className="p-8 md:p-11"
-                style={{
-                  background: '#F4F1ED', borderRadius: '18px',
-                  textAlign: 'center', borderTop: '5px solid #6AB04C',
-                  boxShadow: '0 4px 22px rgba(61,26,10,0.07)',
-                  animation: isVisible ? `fadeInUp 0.6s ease-out ${index * 0.1}s both` : 'none',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 20px 46px rgba(61,26,10,0.13)'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 22px rgba(61,26,10,0.07)'; }}
-              >
-                <div style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #6AB04C, #3D1A0A)', borderRadius: '50%', margin: '0 auto 22px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 22px rgba(106,176,76,0.35)' }}>
-                  {member.icon}
-                </div>
-                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>{member.name}</h3>
-                <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.8rem', fontWeight: 700, color: '#6AB04C', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '12px' }}>{member.role}</p>
-                <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.9rem', color: '#5C3D2A', lineHeight: 1.75 }}>{member.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ── Why Choose Us ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
