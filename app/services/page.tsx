@@ -2,128 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
-const services = [
-  {
-    id: 1,
-    title: "Caregiver Services",
-    description: "Professional caregiver support for daily living activities, companionship, and personal care to help seniors live comfortably at home.",
-    icon: "🏥",
-    image: "/images/Abishag_img/1. Caregiver Services.png",
-    details: "Personal hygiene assistance, companionship, daily routine support, and household help",
-  },
-  {
-    id: 2,
-    title: "Nursing Services",
-    description: "Skilled nursing care at home including wound care, medication management, and post-operative support by licensed nurses.",
-    icon: "❤️",
-    image: "/images/Abishag_img/11. Care Coordination.png",
-    details: "Wound care, medication schedules, health assessments, IV therapy, and emergency support",
-  },
-  {
-    id: 3,
-    title: "Hospice Care",
-    description: "Compassionate end-of-life care focused on comfort, dignity, and emotional support for patients and their families.",
-    icon: "🕊️",
-    image: "/images/Abishag_img/9. Medical Equipment Setup.png",
-    details: "Pain management, emotional counseling, family support, spiritual care, and comfort measures",
-  },
-  {
-    id: 4,
-    title: "Dementia Care",
-    description: "Specialized memory and cognitive care for patients with dementia or Alzheimer's, providing a safe and structured environment.",
-    icon: "🧠",
-    image: "/images/Abishag_img/13. Pharmacy Delivery.png",
-    details: "Memory activities, behavioral support, safe environment, caregiver guidance, and daily routines",
-  },
-  {
-    id: 5,
-    title: "Allied Health Visit",
-    description: "Home visits by allied health professionals including physiotherapists, occupational therapists, and speech therapists.",
-    icon: "🧘",
-    image: "/images/Abishag_img/12. Lab Sample Collection.png",
-    details: "Physiotherapy, occupational therapy, speech therapy, rehabilitation, and functional assessments",
-  },
-  {
-    id: 6,
-    title: "Nurse Visit (On-demand)",
-    description: "On-call and scheduled nurse visits for health monitoring, medication administration, and emergency assessments.",
-    icon: "🚐",
-    image: "/images/Abishag_img/3. Hospice Care.png",
-    details: "Vital signs monitoring, on-demand visits, medication checks, and urgent health assessments",
-  },
-  {
-    id: 7,
-    title: "Geriatric Care",
-    description: "Comprehensive care tailored for the elderly, addressing complex health needs and promoting a higher quality of life.",
-    icon: "👴",
-    image: "/images/Abishag_img/10. ICU Setup at Home.png",
-    details: "Geriatric assessments, chronic disease management, fall prevention, and wellness monitoring",
-  },
-  {
-    id: 8,
-    title: "Palliative Care",
-    description: "Relief-focused care for those with serious illnesses, prioritizing comfort, pain management, and quality of life.",
-    icon: "💙",
-    image: "/images/Abishag_img/15. Dietician Consultation.png",
-    details: "Pain relief, symptom management, emotional support, care coordination, and family counseling",
-  },
-  {
-    id: 9,
-    title: "Medical Equipment Setup",
-    description: "Professional setup and management of home medical equipment for patients requiring assisted care at home.",
-    icon: "🔧",
-    image: "/images/Abishag_img/8. Palliative Care.png",
-    details: "Oxygen setup, hospital beds, wheelchairs, monitoring devices, and equipment training",
-  },
-  {
-    id: 10,
-    title: "ICU Setup at Home",
-    description: "Advanced home ICU setup for critically ill patients who require hospital-level care in the comfort of their home.",
-    icon: "🏨",
-    image: "/images/Abishag_img/7. Geriatric Care.png",
-    details: "Ventilator support, cardiac monitoring, critical care nursing, and 24/7 medical supervision",
-  },
-  {
-    id: 11,
-    title: "Care Coordination",
-    description: "End-to-end coordination of care services, ensuring seamless communication between caregivers, doctors, and family.",
-    icon: "📋",
-    image: "/images/Abishag_img/6. Nurse Visit (On-demand).png",
-    details: "Care planning, doctor coordination, family communication, service scheduling, and progress tracking",
-  },
-  {
-    id: 12,
-    title: "Lab Sample Collection",
-    description: "Convenient home-based lab sample collection for diagnostic tests, eliminating the need for hospital visits.",
-    icon: "🧪",
-    image: "/images/Abishag_img/5. Allied Health Visit.png",
-    details: "Blood tests, urine analysis, swab collections, sample transport, and result delivery",
-  },
-  {
-    id: 13,
-    title: "Pharmacy Delivery",
-    description: "Timely delivery of prescribed medications and medical supplies directly to your doorstep.",
-    icon: "💊",
-    image: "/images/Abishag_img/4. Dementia Care.png",
-    details: "Prescription fulfillment, medication packaging, delivery scheduling, and refill reminders",
-  },
-  {
-    id: 15,
-    title: "Dietician Consultation",
-    description: "Personalized dietary counseling and meal planning by certified dieticians for optimal nutrition and health.",
-    icon: "🥗",
-    image: "/images/Abishag_img/2. Nursing Services.png",
-    details: "Nutritional assessments, diet plans, therapeutic nutrition, and ongoing dietary support",
-  },
-  {
-    id: 16,
-    title: "Mental Health Counseling",
-    description: "Professional mental health support for seniors and families dealing with anxiety, depression, grief, or isolation.",
-    icon: "🧩",
-    image: "/images/Abishag_img/16. Mental Health Counseling.png",
-    details: "Individual counseling, family therapy, grief support, stress management, and behavioral health",
-  },
-];
+import Link from 'next/link';
+import { servicesData } from '../data/services';
 
 const highlights = [
   {
@@ -140,7 +20,6 @@ const highlights = [
 
 export default function Services() {
   const [isVisible, setIsVisible] = useState(false);
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setIsVisible(true), 100);
@@ -214,19 +93,18 @@ export default function Services() {
       {/* ── Services Grid ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
+          {servicesData.map((service, index) => (
+            <Link
+              href={`/services/${service.slug}`}
               key={service.id}
-              onClick={() => setExpandedCard(expandedCard === service.id ? null : service.id)}
               className="p-6 md:p-9"
               style={{
+                display: 'block',
+                textDecoration: 'none',
                 background: '#ffffff',
                 borderRadius: '18px',
                 borderTop: '5px solid #6AB04C',
-                boxShadow: expandedCard === service.id
-                  ? '0 22px 52px rgba(61,26,10,0.15)'
-                  : '0 4px 22px rgba(61,26,10,0.07)',
-                cursor: 'pointer',
+                boxShadow: '0 4px 22px rgba(61,26,10,0.07)',
                 transition: 'transform 0.35s ease, box-shadow 0.35s ease',
                 opacity: isVisible ? 1 : 0,
                 animation: isVisible ? `fadeInUp 0.6s ease-out ${index * 0.08}s both` : 'none',
@@ -241,9 +119,7 @@ export default function Services() {
               onMouseLeave={e => {
                 const el = e.currentTarget;
                 el.style.transform = 'translateY(0)';
-                el.style.boxShadow = expandedCard === service.id
-                  ? '0 22px 52px rgba(61,26,10,0.15)'
-                  : '0 4px 22px rgba(61,26,10,0.07)';
+                el.style.boxShadow = '0 4px 22px rgba(61,26,10,0.07)';
               }}
             >
               {/* Service Image */}
@@ -283,38 +159,24 @@ export default function Services() {
               >
                 {service.description}
               </p>
-
-              {/* Expandable Details */}
-              <div
-                style={{
-                  maxHeight: expandedCard === service.id ? '130px' : '0',
-                  opacity: expandedCard === service.id ? 1 : 0,
-                  overflow: 'hidden',
-                  transition: 'max-height 0.35s ease, opacity 0.35s ease',
-                }}
-              >
-                <div style={{ paddingTop: '14px', borderTop: '1px solid #EAF5E0' }}>
-                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.85rem', color: '#5C3D2A', lineHeight: 1.75 }}>
-                    <strong style={{ color: '#6AB04C' }}>What&apos;s Included:</strong><br />
-                    {service.details}
-                  </p>
-                </div>
+              {/* More Details Button */}
+              <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
+                <span style={{ 
+                  fontFamily: "'Nunito', sans-serif", 
+                  fontSize: '0.9rem', 
+                  fontWeight: 800, 
+                  color: '#6AB04C', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '6px' 
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  More details
+                </span>
               </div>
-
-              <div
-                style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  fontSize: '0.82rem',
-                  fontWeight: 700,
-                  color: '#6AB04C',
-                  letterSpacing: '0.03em',
-                  marginTop: '12px',
-                  transition: 'transform 0.2s',
-                }}
-              >
-                {expandedCard === service.id ? '▲ Less details' : '▶ More details'}
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
