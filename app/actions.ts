@@ -100,8 +100,19 @@ export async function addReview(review: Review) {
       VALUES (${review.name}, ${review.rating}, ${review.text}, ${review.date})
     `;
     return { success: true };
-  } catch (error) {
-    console.error('Error adding review:', error);
-    return { success: false, error };
+  } catch (error: any) {
+    console.error('Error adding review, trying to re-init table:', error.message);
+    
+    // If it failed because table is missing, try to init and retry once
+    try {
+      await initDb();
+      await sql`
+        INSERT INTO reviews (name, rating, text, date)
+        VALUES (${review.name}, ${review.rating}, ${review.text}, ${review.date})
+      `;
+      return { success: true };
+    } catch (retryError: any) {
+      return { success: false, error: retryError.message };
+    }
   }
 }

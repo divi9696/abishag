@@ -60,7 +60,11 @@ export default function Home() {
     setReviews((prev) => [newReview, ...prev]);
     
     // Send to database
-    await addReview(newReview);
+    const result = await addReview(newReview);
+    if (!result.success) {
+      console.error('Failed to save review:', result.error);
+      alert('Note: The review was not saved to the database. ' + result.error);
+    }
     
     setFormName('');
     setFormRating(0);
