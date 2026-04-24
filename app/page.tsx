@@ -8,6 +8,7 @@ export default function Home() {
   // ── Intro animation state ──
   const [introDone, setIntroDone] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   // ── Review state ──
   type Review = { name: string; rating: number; text: string; date: string };
@@ -35,9 +36,19 @@ export default function Home() {
   };
 
   useEffect(() => {
+    setIsMounted(true);
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    if (hasSeenIntro) {
+      setIntroDone(true);
+    }
     const t = setTimeout(() => setIsVisible(true), 150);
     return () => clearTimeout(t);
   }, []);
+
+  const handleIntroComplete = () => {
+    setIntroDone(true);
+    sessionStorage.setItem('hasSeenIntro', 'true');
+  };
 
   const features = [
     {
@@ -103,8 +114,8 @@ export default function Home() {
     <div style={{ background: '#F4F1ED' }}>
 
       {/* ── INTRO ANIMATION ── */}
-      {!introDone && (
-        <IntroAnimation onComplete={() => setIntroDone(true)} />
+      {isMounted && !introDone && (
+        <IntroAnimation onComplete={handleIntroComplete} />
       )}
 
       {/* ── CINEMATIC HERO ── */}
