@@ -95,6 +95,7 @@ export default function About() {
               </p>
             ))}
           </div>
+          <div
             className="p-8 md:p-12"
             style={{
               background: 'linear-gradient(135deg, #EAF5E0 0%, #F5EDE6 100%)',
