@@ -514,7 +514,7 @@ export default function Home() {
           <div className={showReviewForm ? "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" : "flex flex-col items-center max-w-3xl mx-auto"}>
 
             {/* ── Write a review ── */}
-            {showReviewForm ? (
+            {showReviewForm && (
               <div className="p-6 md:p-9" style={{ background: '#F9F7F4', borderRadius: '22px', boxShadow: '0 4px 28px rgba(61,26,10,0.07)', border: '1px solid #EAE5DF', width: '100%', position: 'relative' }}>
                 <button 
                   onClick={() => setShowReviewForm(false)}
