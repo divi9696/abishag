@@ -49,6 +49,11 @@ export async function initDb() {
 }
 
 export async function getReviews() {
+  if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
+    console.error('No database connection string found in environment variables');
+    return { error: 'no_connection_string' };
+  }
+
   try {
     // Try to fetch reviews
     const { rows } = await sql`

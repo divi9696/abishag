@@ -19,18 +19,30 @@ export default function Home() {
   const [hoveredStar, setHoveredStar] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dbStatus, setDbStatus] = useState<'connected' | 'disconnected' | 'checking'>('checking');
 
   useEffect(() => {
     // Fetch reviews on mount
     getReviews().then((data) => {
-      if (data && data.length > 0) {
-        setReviews(data);
-      } else {
-        // Fallback data if DB isn't configured yet
+      if (data && 'error' in data && data.error === 'no_connection_string') {
+        setDbStatus('disconnected');
+        // Fallback data
         setReviews([
           { name: 'Priya Ramachandran', rating: 5, text: 'Abishag transformed my mother\'s daily life. The caregiver assigned was patient, professional, and treated her like family. We are truly grateful.', date: 'April 2026' },
           { name: 'Karthik Sundaram', rating: 5, text: 'The nursing team is exceptional. Their attention to detail with medication management gave our entire family peace of mind. Highly recommended.', date: 'March 2026' },
         ]);
+      } else if (Array.isArray(data) && data.length > 0) {
+        setDbStatus('connected');
+        setReviews(data);
+      } else {
+        setDbStatus('connected'); // Even if 0 reviews, if no error, we are connected
+        // Fallback data if 0
+        if (Array.isArray(data) && data.length === 0) {
+           setReviews([
+            { name: 'Priya Ramachandran', rating: 5, text: 'Abishag transformed my mother\'s daily life. The caregiver assigned was patient, professional, and treated her like family. We are truly grateful.', date: 'April 2026' },
+            { name: 'Karthik Sundaram', rating: 5, text: 'The nursing team is exceptional. Their attention to detail with medication management gave our entire family peace of mind. Highly recommended.', date: 'March 2026' },
+          ]);
+        }
       }
     });
   }, []);
@@ -478,6 +490,11 @@ export default function Home() {
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 700, color: '#3D1A0A' }}>
               Reviews &amp; Testimonials
             </h2>
+            {dbStatus === 'disconnected' && (
+              <div style={{ marginTop: '24px', padding: '10px', background: '#FFF5F5', border: '1px solid #FED7D7', borderRadius: '8px', color: '#C53030', fontSize: '0.85rem' }}>
+                Note: Database not yet connected. Reviews are currently in demonstration mode.
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
