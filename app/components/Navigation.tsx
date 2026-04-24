@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const navLinks = [
@@ -12,6 +13,7 @@ const navLinks = [
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav
@@ -70,34 +72,37 @@ export default function Navigation() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex gap-6 lg:gap-8 items-center">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  fontWeight: 600,
-                  fontSize: '0.93rem',
-                  color: '#5C3D2A',
-                  letterSpacing: '0.02em',
-                  textDecoration: 'none',
-                  padding: '5px 0',
-                  borderBottom: '2px solid transparent',
-                  transition: 'color 0.2s, border-color 0.2s',
-                  whiteSpace: 'nowrap',
-                }}
-                onMouseEnter={e => {
-                  (e.target as HTMLElement).style.color = '#3D1A0A';
-                  (e.target as HTMLElement).style.borderBottomColor = '#6AB04C';
-                }}
-                onMouseLeave={e => {
-                  (e.target as HTMLElement).style.color = '#5C3D2A';
-                  (e.target as HTMLElement).style.borderBottomColor = 'transparent';
-                }}
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ href, label }) => {
+              const isActive = pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontWeight: 600,
+                    fontSize: '0.93rem',
+                    color: isActive ? '#3D1A0A' : '#5C3D2A',
+                    letterSpacing: '0.02em',
+                    textDecoration: 'none',
+                    padding: '5px 0',
+                    borderBottom: isActive ? '2px solid #6AB04C' : '2px solid transparent',
+                    transition: 'color 0.2s, border-color 0.2s',
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={e => {
+                    (e.target as HTMLElement).style.color = '#3D1A0A';
+                    (e.target as HTMLElement).style.borderBottomColor = '#6AB04C';
+                  }}
+                  onMouseLeave={e => {
+                    (e.target as HTMLElement).style.color = isActive ? '#3D1A0A' : '#5C3D2A';
+                    (e.target as HTMLElement).style.borderBottomColor = isActive ? '#6AB04C' : 'transparent';
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
             <a
               href="/contact"
               style={{
@@ -166,28 +171,39 @@ export default function Navigation() {
             boxShadow: '0 8px 24px rgba(61,26,10,0.12)',
           }}
         >
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 600,
-                fontSize: '1rem',
-                color: '#3D1A0A',
-                textDecoration: 'none',
-                padding: '12px 16px',
-                borderRadius: '10px',
-                transition: 'background 0.2s',
-                display: 'block',
-              }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#F4F1ED')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'transparent')}
-            >
-              {label}
-            </Link>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  color: isActive ? '#6AB04C' : '#3D1A0A',
+                  textDecoration: 'none',
+                  padding: '12px 16px',
+                  borderRadius: '8px',
+                  background: isActive ? '#EAF5E0' : 'transparent',
+                  transition: 'background 0.2s, color 0.2s',
+                }}
+                onMouseEnter={e => {
+                  if (!isActive) {
+                    (e.target as HTMLElement).style.background = '#F9F7F4';
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (!isActive) {
+                    (e.target as HTMLElement).style.background = 'transparent';
+                  }
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
           <a
             href="/contact"
             onClick={() => setMenuOpen(false)}

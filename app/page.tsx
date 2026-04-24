@@ -419,28 +419,29 @@ export default function Home() {
               Why Choose Abishag?
             </h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyUs.map(({ title, desc, icon }, index) => (
               <div
                 key={index}
-                className="p-6 md:p-9"
+                className="p-6 md:p-8"
                 style={{
-                  background: '#ffffff', borderRadius: '14px',
-                  borderLeft: '5px solid #6AB04C',
+                  background: '#ffffff', borderRadius: '16px',
+                  borderTop: '5px solid #6AB04C',
                   boxShadow: '0 4px 18px rgba(61,26,10,0.06)',
-                  display: 'flex', alignItems: 'flex-start', gap: '20px',
+                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '16px',
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   cursor: 'pointer',
+                  height: '100%',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(6px)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(61,26,10,0.12)'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(61,26,10,0.06)'; }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(61,26,10,0.12)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(61,26,10,0.06)'; }}
               >
-                <span style={{ flexShrink: 0, marginTop: '2px', background: '#EAF5E0', padding: '12px', borderRadius: '12px' }}>
+                <div style={{ background: '#EAF5E0', padding: '14px', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '4px' }}>
                   {icon}
-                </span>
+                </div>
                 <div>
-                  <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '6px' }}>{title}</h3>
-                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.95rem', color: '#5C3D2A', lineHeight: 1.8 }}>{desc}</p>
+                  <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '8px', lineHeight: 1.2 }}>{title}</h3>
+                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.95rem', color: '#5C3D2A', lineHeight: 1.7 }}>{desc}</p>
                 </div>
               </div>
             ))}
