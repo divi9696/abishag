@@ -17,7 +17,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate
     if (!formData.name || !formData.phone || !formData.message) {
       alert("Please fill in at least your name, phone, and message.");
@@ -25,7 +25,7 @@ export default function Contact() {
     }
 
     // Format the message for WhatsApp
-    const whatsappNumber = "919876543210"; // Replace with actual number without +
+    const whatsappNumber = "9345989699"; // Replace with actual number without +
     const text = `*New Inquiry via Website*
     
 *Name:* ${formData.name}
@@ -46,9 +46,9 @@ ${formData.message}`;
   return (
     <div style={{ background: '#F4F1ED', minHeight: '100vh', padding: '60px 20px', display: 'flex', justifyContent: 'center' }}>
       <div style={{ maxWidth: '900px', width: '100%' }}>
-        
+
         <div style={{ background: '#ffffff', borderRadius: '24px', padding: '50px', boxShadow: '0 8px 32px rgba(61,26,10,0.06)', border: '1px solid #EAE5DF' }}>
-          
+
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2.8rem', fontWeight: 700, color: '#3D1A0A', marginBottom: '8px' }}>
             Send Us A Message
           </h1>
@@ -58,7 +58,7 @@ ${formData.message}`;
 
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              
+
               {/* Full Name */}
               <div>
                 <label style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '0.85rem', color: '#5C3D2A', display: 'block', marginBottom: '8px' }}>
@@ -226,7 +226,7 @@ ${formData.message}`;
 
           </form>
         </div>
-        
+
       </div>
     </div>
   );
