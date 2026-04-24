@@ -56,9 +56,13 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
               color: '#ffffff',
               lineHeight: 1.1,
               marginBottom: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
             }}
           >
-            {service.icon} {service.title}
+            <span style={{ color: '#FFD700' }}>{service.icon}</span>
+            {service.title}
           </h1>
         </div>
       </section>
