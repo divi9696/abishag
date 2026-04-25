@@ -26,7 +26,7 @@ export default function Navigation() {
         zIndex: 1000,
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-2 sm:px-4 lg:px-6">
         {/* Top bar */}
         <div className="flex justify-between items-center" style={{ height: '58px' }}>
           {/* Logo */}

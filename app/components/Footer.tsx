@@ -1,10 +1,39 @@
 'use client';
 
+const InstagramIcon = ({ size = 20 }: { size?: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
+
+const XIcon = ({ size = 20 }: { size?: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z" />
+  </svg>
+);
+
 export default function Footer() {
   return (
     <footer style={{ background: '#200D05', color: '#EDE8E2' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-3 mb-5">
@@ -65,6 +94,73 @@ export default function Footer() {
             <div style={{ fontFamily: "'Nunito', sans-serif", color: 'rgba(237,232,226,0.62)', fontSize: '0.9rem', lineHeight: 2 }}>
               <p>Email: contact@abishag.com</p>
               <p>Phone: Coming Soon</p>
+            </div>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 700, color: '#ffffff', marginBottom: '18px' }}>
+              Follow Us
+            </h3>
+            <div style={{ display: 'flex', gap: '20px' }}>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'rgba(237,232,226,0.62)',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  background: 'rgba(237,232,226,0.05)',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = '#6AB04C';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(106, 176, 76, 0.1)';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = 'rgba(237,232,226,0.62)';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(237,232,226,0.05)';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                }}
+              >
+                <InstagramIcon size={20} />
+              </a>
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'rgba(237,232,226,0.62)',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  background: 'rgba(237,232,226,0.05)',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = '#6AB04C';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(106, 176, 76, 0.1)';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = 'rgba(237,232,226,0.62)';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(237,232,226,0.05)';
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                }}
+              >
+                <XIcon size={18} />
+              </a>
             </div>
           </div>
         </div>
