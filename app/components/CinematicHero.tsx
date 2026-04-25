@@ -95,12 +95,15 @@ export default function CinematicHero() {
 
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="relative mx-auto overflow-hidden"
       style={{
-        /* Fill everything below the 58px sticky nav */
-        height: 'calc(100vh - 58px)',
-        minHeight: '500px',
-        maxHeight: '860px',
+        height: '80vh',
+        minHeight: '460px',
+        maxHeight: '720px',
+        width: '98%',
+        marginTop: '12px',
+        borderRadius: '24px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
       }}
     >
       {/* ── Scene layers ── */}
